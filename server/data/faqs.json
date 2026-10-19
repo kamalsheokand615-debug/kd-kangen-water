@@ -1,0 +1,107 @@
+[
+  {
+    "question": "What is Kangen Water®?",
+    "answer": "Kangen Water® is a trademarked term by Enagic for alkaline, hydrogen-rich, antioxidant water produced by their medical-grade water ionizers. The word 'Kangen' means 'return to origin' in Japanese. The machines use electrolysis to separate water into alkaline and acidic streams, creating water with different pH levels for various uses.",
+    "category": "General",
+    "displayOrder": 1,
+    "isActive": true
+  },
+  {
+    "question": "Is Kangen Water® safe to drink?",
+    "answer": "Yes, Kangen Water® (pH 8.5-9.5) is safe for daily consumption for most healthy adults. The Japanese Ministry of Health, Labour and Welfare has approved Enagic water ionizers as medical devices. However, if you have specific medical conditions (kidney disease, on medication affecting electrolyte balance, etc.), please consult your healthcare provider before making significant changes to your water consumption.",
+    "category": "Health & Safety",
+    "displayOrder": 2,
+    "isActive": true
+  },
+  {
+    "question": "What are the 7 types of water and their uses?",
+    "answer": "The 7 types are: 1) Strong Kangen Water (pH 11.5) - cleaning/cooking, not for drinking; 2) Kangen Water pH 9.5 - daily drinking; 3) Kangen Water pH 9.0 - mild drinking; 4) Kangen Water pH 8.5 - beginners/sensitive; 5) Clean Water (pH 7.0) - medications, baby formula; 6) Beauty Water (pH 6.0) - skin/hair care; 7) Strong Acidic Water (pH 2.5) - sanitizing, external use only. See our '7 Types of Water' page for details.",
+    "category": "General",
+    "displayOrder": 3,
+    "isActive": true
+  },
+  {
+    "question": "How long does the filter last?",
+    "answer": "The high-grade filter typically lasts for approximately 6,000 liters or 1 year (whichever comes first) for a family of four. The machine will display a notification when it's time to replace the filter. Genuine Enagic filters are NSF/ANSI 42 & 53 certified for chlorine, lead, and cyst reduction.",
+    "category": "Maintenance",
+    "displayOrder": 4,
+    "isActive": true
+  },
+  {
+    "question": "How often should I clean the machine?",
+    "answer": "The machine has an automatic cleaning cycle that runs after each use. For deep cleaning, use the citric acid cleaning cartridge once a month (or as indicated by the machine). This removes mineral buildup on the electrode plates and maintains optimal performance.",
+    "category": "Maintenance",
+    "displayOrder": 5,
+    "isActive": true
+  },
+  {
+    "question": "What is the warranty on Enagic machines?",
+    "answer": "Enagic machines come with a 5-year manufacturer's warranty (3 years for JR IV) when purchased through authorized distributors. The warranty covers manufacturing defects. Extended warranty options may be available. Always purchase from authorized distributors like K.D Kangen Water to ensure valid warranty.",
+    "category": "Purchase & Warranty",
+    "displayOrder": 6,
+    "isActive": true
+  },
+  {
+    "question": "Can I use Kangen Water® for cooking?",
+    "answer": "Yes! Different pH levels enhance different cooking processes. Strong Kangen Water (pH 11.5) is excellent for washing produce (removes pesticides) and pre-boiling vegetables. Kangen Water (pH 9.5) makes fluffier rice, better-tasting soups, and extracts more flavor from tea/coffee. Clean Water (pH 7.0) is recommended for baby formula.",
+    "category": "Usage",
+    "displayOrder": 7,
+    "isActive": true
+  },
+  {
+    "question": "Does the machine require professional installation?",
+    "answer": "Most Enagic models are designed for easy DIY installation with standard faucet connections. The package includes a diverter valve that fits most standard faucets. For under-sink installation or non-standard plumbing, we recommend professional installation. K.D Kangen Water offers installation assistance.",
+    "category": "Installation",
+    "displayOrder": 8,
+    "isActive": true
+  },
+  {
+    "question": "What is ORP and why does it matter?",
+    "answer": "ORP (Oxidation-Reduction Potential) measures the water's ability to act as an antioxidant (negative ORP) or oxidant (positive ORP). Kangen Water® typically has a negative ORP (-200mV to -800mV), indicating antioxidant properties. As stated by the manufacturer, this helps neutralize free radicals in the body.",
+    "category": "Technical",
+    "displayOrder": 9,
+    "isActive": true
+  },
+  {
+    "question": "Can I take medications with Kangen Water®?",
+    "answer": "It is recommended to take medications with Clean Water (pH 7.0 - neutral) from the machine, not alkaline Kangen Water®. Alkaline water may affect the absorption rate of certain medications. Always consult your doctor or pharmacist about taking medications with alkaline water.",
+    "category": "Health & Safety",
+    "displayOrder": 10,
+    "isActive": true
+  },
+  {
+    "question": "Is there a money-back guarantee?",
+    "answer": "Enagic's return policy varies by region and distributor. K.D Kangen Water offers a satisfaction guarantee on select models. Please contact us for current terms and conditions. We encourage scheduling a free demo to experience the water before purchasing.",
+    "category": "Purchase & Warranty",
+    "displayOrder": 11,
+    "isActive": true
+  },
+  {
+    "question": "How does Enagic compare to other water ionizers?",
+    "answer": "Enagic is the only water ionizer company with: 1) Japanese MHLW medical device approval; 2) 50+ years of manufacturing experience; 3) ISO 9001, 14001, 13485 certifications; 4) WQA Gold Seal & NSF certifications; 5) In-house Japanese manufacturing; 6) 5-year warranty; 7) Global distributor network with local support. Many cheaper alternatives lack these certifications and medical-grade standards.",
+    "category": "Comparison",
+    "displayOrder": 12,
+    "isActive": true
+  },
+  {
+    "question": "What maintenance costs should I expect?",
+    "answer": "Annual maintenance costs include: Filter replacement (~₹8,000-12,000/year depending on model), Citric acid cleaning cartridges (~₹500-800/month), Electrolysis enhancer for Strong waters (~₹1,000-1,500/bottle, lasts ~30 uses). Total estimated annual cost: ₹15,000-25,000 depending on usage.",
+    "category": "Costs",
+    "displayOrder": 13,
+    "isActive": true
+  },
+  {
+    "question": "Can the machine work with my home's water pressure?",
+    "answer": "Enagic machines require minimum water pressure of 1 kgf/cm² (approx. 14 PSI) and maximum of 5 kgf/cm² (approx. 70 PSI). Most Indian homes have adequate pressure. If pressure is too low, a booster pump may be needed. If too high, a pressure reducer is recommended. Our team can help assess your setup.",
+    "category": "Installation",
+    "displayOrder": 14,
+    "isActive": true
+  },
+  {
+    "question": "Is K.D Kangen Water an official Enagic company?",
+    "answer": "K.D Kangen Water is an authorized independent distributor/representative of Enagic products. We are not Enagic Co., Ltd. itself. Enagic trademarks (Kangen Water®, Leveluk®, Anespa®, etc.) belong to Enagic Co., Ltd. We sell genuine Enagic products with full manufacturer warranty and support.",
+    "category": "General",
+    "displayOrder": 15,
+    "isActive": true
+  }
+]
