@@ -1,0 +1,122 @@
+[
+  {
+    "year": 1974,
+    "title": "Company Founded",
+    "description": "Hironari Ohshiro founded Enagic (originally named 'Tokurei') in Okinawa, Japan. The company started as a specialized water technology business focused on water ionization.",
+    "imageUrl": "",
+    "displayOrder": 1,
+    "isActive": true
+  },
+  {
+    "year": 1988,
+    "title": "First Commercial Water Ionizer",
+    "description": "Launch of the first commercial-grade water ionizer, establishing Enagic as a pioneer in the alkaline water industry in Japan.",
+    "imageUrl": "",
+    "displayOrder": 2,
+    "isActive": true
+  },
+  {
+    "year": 1994,
+    "title": "Japanese MHLW Medical Device Approval",
+    "description": "Enagic's water ionizers received approval as 'Managed Medical Devices (Class II)' from the Japanese Ministry of Health, Labour and Welfare - a significant milestone validating the health claims.",
+    "imageUrl": "",
+    "displayOrder": 3,
+    "isActive": true
+  },
+  {
+    "year": 2000,
+    "title": "Launch of Leveluk Series",
+    "description": "Introduction of the Leveluk series, which would become Enagic's flagship product line. The series brought advanced electrolysis technology to homes worldwide.",
+    "imageUrl": "",
+    "displayOrder": 4,
+    "isActive": true
+  },
+  {
+    "year": 2003,
+    "title": "Global Expansion Begins",
+    "description": "Enagic begins international expansion, establishing presence in the United States, Taiwan, and other markets. The direct sales/distributor model is adopted globally.",
+    "imageUrl": "",
+    "displayOrder": 5,
+    "isActive": true
+  },
+  {
+    "year": 2006,
+    "title": "Enagic USA Established",
+    "description": "Enagic USA, Inc. established in Los Angeles, California, serving as the North American headquarters and distribution center.",
+    "imageUrl": "",
+    "displayOrder": 6,
+    "isActive": true
+  },
+  {
+    "year": 2009,
+    "title": "ISO 9001 & ISO 14001 Certifications",
+    "description": "Enagic achieves ISO 9001 (Quality Management) and ISO 14001 (Environmental Management) certifications, demonstrating commitment to quality and sustainability.",
+    "imageUrl": "",
+    "displayOrder": 7,
+    "isActive": true
+  },
+  {
+    "year": 2011,
+    "title": "Launch of Leveluk SD501",
+    "description": "Release of the SD501 model, which becomes the world's best-selling water ionizer. Features 7 platinum-coated titanium plates and sets new industry standards.",
+    "imageUrl": "",
+    "displayOrder": 8,
+    "isActive": true
+  },
+  {
+    "year": 2013,
+    "title": "Anespa DX Launch",
+    "description": "Introduction of Anespa DX, the mineral shower system that brings hot spring experience to home showers, expanding Enagic's product portfolio beyond drinking water.",
+    "imageUrl": "",
+    "displayOrder": 9,
+    "isActive": true
+  },
+  {
+    "year": 2015,
+    "title": "ISO 13485 Medical Device Certification",
+    "description": "Achievement of ISO 13485:2016 certification for medical device quality management, reinforcing the medical-grade status of Enagic ionizers.",
+    "imageUrl": "",
+    "displayOrder": 10,
+    "isActive": true
+  },
+  {
+    "year": 2017,
+    "title": "Enagic India Operations Begin",
+    "description": "Enagic establishes authorized distributor network in India, bringing Kangen Water to the Indian market through certified representatives.",
+    "imageUrl": "",
+    "displayOrder": 11,
+    "isActive": true
+  },
+  {
+    "year": 2019,
+    "title": "Launch of Leveluk K8",
+    "description": "Release of the flagship K8 model with 8 platinum-coated titanium plates, large LCD touchscreen, voice guidance in 8 languages, and enhanced performance.",
+    "imageUrl": "",
+    "displayOrder": 12,
+    "isActive": true
+  },
+  {
+    "year": 2020,
+    "title": "WQA Gold Seal Certification",
+    "description": "Enagic water ionizers receive Water Quality Association Gold Seal certification for the US market, validating safety and performance claims.",
+    "imageUrl": "",
+    "displayOrder": 13,
+    "isActive": true
+  },
+  {
+    "year": 2022,
+    "title": "NSF/ANSI Filter Certifications",
+    "description": "Enagic's internal filtration cartridges achieve NSF/ANSI 42 and 53 certifications, confirming reduction of chlorine, lead, cysts, and VOCs.",
+    "imageUrl": "",
+    "displayOrder": 14,
+    "isActive": true
+  },
+  {
+    "year": 2024,
+    "title": "50th Anniversary & Global Presence",
+    "description": "Enagic celebrates 50 years since founding. Operating in 40+ countries with 1+ million units sold worldwide. Continued innovation in water technology.",
+    "imageUrl": "",
+    "displayOrder": 15,
+    "isActive": true
+  }
+]
