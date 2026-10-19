@@ -1,0 +1,120 @@
+[
+  {
+    "name": "Strong Kangen Water",
+    "phMin": 11.0,
+    "phMax": 11.5,
+    "description": "Strong Kangen Water has a very high pH (11.5) and strong alkalinity. It is not for drinking but excels at cleaning, food preparation, and removing pesticides from produce. Its strong dissolving and heat-conducting properties make it ideal for household cleaning tasks.",
+    "uses": [
+      "Cleaning vegetables and fruits (removes pesticides/oil-based residues)",
+      "Pre-boiling vegetables (enhances flavor, reduces cooking time)",
+      "Cleaning cutting boards, dishes, and kitchen surfaces",
+      "Removing stubborn stains from clothing",
+      "General household cleaning (floors, windows, bathrooms)",
+      "Soaking beans and legumes (reduces cooking time)"
+    ],
+    "color": "#004d7a",
+    "displayOrder": 1,
+    "isActive": true
+  },
+  {
+    "name": "Kangen Water (pH 9.5)",
+    "phMin": 9.0,
+    "phMax": 9.5,
+    "description": "The most popular drinking water type. With a pH of 9.5, this alkaline water is rich in molecular hydrogen (antioxidant) and minerals. Recommended for daily drinking, cooking, and making beverages. As stated by the manufacturer, it helps maintain the body's pH balance.",
+    "uses": [
+      "Daily drinking water",
+      "Making tea, coffee, and soups",
+      "Cooking rice and grains",
+      "Preparing baby formula (consult pediatrician)",
+      "Watering plants (diluted)",
+      "Pet drinking water"
+    ],
+    "color": "#0077b6",
+    "displayOrder": 2,
+    "isActive": true
+  },
+  {
+    "name": "Kangen Water (pH 9.0)",
+    "phMin": 8.5,
+    "phMax": 9.0,
+    "description": "Milder alkaline water suitable for those new to Kangen Water or with sensitive systems. Good for daily drinking and cooking. As stated by the manufacturer, it provides gentle alkalinity and antioxidant properties.",
+    "uses": [
+      "Daily drinking (beginners/sensitive individuals)",
+      "Cooking and food preparation",
+      "Making beverages",
+      "Taking supplements/medications (consult doctor)"
+    ],
+    "color": "#0096c7",
+    "displayOrder": 3,
+    "isActive": true
+  },
+  {
+    "name": "Kangen Water (pH 8.5)",
+    "phMin": 8.0,
+    "phMax": 8.5,
+    "description": "The mildest Kangen Water, ideal for first-time users, children, and the elderly. Gentle introduction to alkaline water. As stated by the manufacturer, it offers subtle alkalinity with hydrogen antioxidant benefits.",
+    "uses": [
+      "First-time users (first 1-2 weeks)",
+      "Children and elderly",
+      "People with sensitive stomachs",
+      "Daily drinking after acclimation",
+      "Pet water"
+    ],
+    "color": "#48cae4",
+    "displayOrder": 4,
+    "isActive": true
+  },
+  {
+    "name": "Clean Water",
+    "phMin": 7.0,
+    "phMax": 7.0,
+    "description": "Neutral pH water (7.0) filtered through the machine's high-grade filter but not ionized. Removes chlorine, lead, and impurities while retaining minerals. Same quality as premium filtered water.",
+    "uses": [
+      "Taking medications (as neutral pH doesn't affect absorption)",
+      "Making baby formula",
+      "For those advised by doctors to avoid alkaline water",
+      "General filtered water needs",
+      "Appliances requiring neutral water (irons, humidifiers)"
+    ],
+    "color": "#90e0ef",
+    "displayOrder": 5,
+    "isActive": true
+  },
+  {
+    "name": "Beauty Water",
+    "phMin": 5.5,
+    "phMax": 6.0,
+    "description": "Slightly acidic water (pH 5.5-6.0) that matches the skin's natural pH. Excellent for facial cleansing, hair care, and skin toning. As stated by the manufacturer, it has astringent properties that help tighten pores and condition hair.",
+    "uses": [
+      "Facial cleansing and toning",
+      "Hair rinse after shampooing (adds shine)",
+      "Skin spritz throughout the day",
+      "After-sun care",
+      "Pet grooming (coat conditioning)",
+      "Cleaning makeup brushes",
+      "Floral arrangements (extends freshness)"
+    ],
+    "color": "#f77f00",
+    "displayOrder": 6,
+    "isActive": true
+  },
+  {
+    "name": "Strong Acidic Water",
+    "phMin": 2.5,
+    "phMax": 2.7,
+    "description": "Very low pH water (2.5) with strong oxidizing properties. NOT FOR DRINKING. For external use only. As stated by the manufacturer, it has sanitizing properties and can be used for cleaning and disinfecting surfaces.",
+    "uses": [
+      "Sanitizing kitchen surfaces and utensils",
+      "Cleaning and disinfecting cutting boards",
+      "Hand sanitizing",
+      "Gargling (spit out, do not swallow)",
+      "Cleaning minor cuts and scrapes (external)",
+      "Sanitizing toothbrushes and dental appliances",
+      "Cleaning pet areas",
+      "Removing mold and mildew"
+    ],
+    "color": "#dc2f02",
+    "displayOrder": 7,
+    "isActive": true
+  }
+]
