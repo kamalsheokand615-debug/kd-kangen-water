@@ -1,0 +1,242 @@
+[
+  {
+    "title": "ISO 9001:2015 Quality Management System",
+    "issuingBody": "Japan Quality Assurance Organization (JQA)",
+    "year": 2023,
+    "description": "Enagic's quality management system certified to ISO 9001:2015 standards for design, development, manufacturing, and sales of water ionizers and related products.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/ISO9001-%E8%AA%8D%E8%A8%BC%E6%9B%B8.pdf",
+    "fileType": "pdf",
+    "displayOrder": 1,
+    "isActive": true
+  },
+  {
+    "title": "ISO 14001:2015 Environmental Management System",
+    "issuingBody": "Japan Quality Assurance Organization (JQA)",
+    "year": 2023,
+    "description": "Enagic's environmental management system certified to ISO 14001:2015, demonstrating commitment to environmental protection and sustainable manufacturing practices.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/ISO1400_new.pdf",
+    "fileType": "pdf",
+    "displayOrder": 2,
+    "isActive": true
+  },
+  {
+    "title": "ISO 13485:2016 Medical Device Quality Management",
+    "issuingBody": "Japan Quality Assurance Organization (JQA)",
+    "year": 2023,
+    "description": "Certification for medical device quality management system applicable to Enagic's water ionizers classified as medical devices in Japan. Kangen Water systems are used in over 200 hospitals in Japan.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/ISO-13485-1.pdf",
+    "fileType": "pdf",
+    "displayOrder": 3,
+    "isActive": true
+  },
+  {
+    "title": "Japanese Ministry of Health, Labour and Welfare Approval",
+    "issuingBody": "Ministry of Health, Labour and Welfare (MHLW), Japan",
+    "year": 1994,
+    "description": "Enagic's water ionizers approved as 'Medical Device' (Managed Medical Device Class II) by the Japanese MHLW. This approval confirms the machines produce water with recognized health benefits per Japanese regulations.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/wfOU2A3z.pdf",
+    "fileType": "pdf",
+    "displayOrder": 4,
+    "isActive": true
+  },
+  {
+    "title": "Medical Device Manufacturing License",
+    "issuingBody": "Osaka Prefecture, Japan",
+    "year": 2024,
+    "description": "Medical Device Manufacturing License issued by Osaka Prefecture. License Number: 27BZ006010",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/IVdZUF1B.pdf",
+    "fileType": "pdf",
+    "displayOrder": 5,
+    "isActive": true
+  },
+  {
+    "title": "Medical Device Marketing Authorization",
+    "issuingBody": "Ministry of Health, Labour and Welfare, Government of Japan",
+    "year": 2024,
+    "description": "Medical Device Marketing Authorization issued by MHLW, Government of Japan. License Number: 27B2X00070",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/IVdZUF1B.pdf",
+    "fileType": "pdf",
+    "displayOrder": 6,
+    "isActive": true
+  },
+  {
+    "title": "Water Quality Association (WQA) Gold Seal Certificate",
+    "issuingBody": "Water Quality Association (USA)",
+    "year": 2024,
+    "description": "Enagic water ionizers certified under WQA Gold Seal program for material safety, structural integrity, and performance claims validation.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/O4VEnMQo.pdf",
+    "fileType": "pdf",
+    "displayOrder": 7,
+    "isActive": true
+  },
+  {
+    "title": "WQA Official Gold Seal Listing",
+    "issuingBody": "Water Quality Association (USA)",
+    "year": 2024,
+    "description": "Official WQA Gold Seal listing confirming product certification for public health and safety services throughout the USA and globally.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/QWn4sKh7.pdf",
+    "fileType": "pdf",
+    "displayOrder": 8,
+    "isActive": true
+  },
+  {
+    "title": "NSF/ANSI 42 & 53 Certification",
+    "issuingBody": "NSF International",
+    "year": 2022,
+    "description": "Internal filters certified to NSF/ANSI 42 (aesthetic effects - chlorine reduction) and NSF/ANSI 53 (health effects - lead, cysts, VOC reduction) standards.",
+    "fileUrl": "",
+    "fileType": "image",
+    "displayOrder": 9,
+    "isActive": true
+  },
+  {
+    "title": "CE Marking (European Conformity)",
+    "issuingBody": "European Union",
+    "year": 2021,
+    "description": "Enagic products comply with EU safety, health, and environmental protection requirements for sale in the European Economic Area.",
+    "fileUrl": "",
+    "fileType": "image",
+    "displayOrder": 10,
+    "isActive": true
+  },
+  {
+    "title": "RoHS Compliance",
+    "issuingBody": "EU Directive 2011/65/EU",
+    "year": 2021,
+    "description": "Restriction of Hazardous Substances compliance - Enagic products free from lead, mercury, cadmium, hexavalent chromium, PBB, PBDE, and phthalates.",
+    "fileUrl": "",
+    "fileType": "image",
+    "displayOrder": 11,
+    "isActive": true
+  },
+  {
+    "title": "Good Manufacturing Practice (GMP) Certification",
+    "issuingBody": "Japan Medical Device GMP",
+    "year": 2022,
+    "description": "Manufacturing facility certified to Japanese GMP standards for medical device production, ensuring consistent quality and safety.",
+    "fileUrl": "",
+    "fileType": "image",
+    "displayOrder": 12,
+    "isActive": true
+  },
+  {
+    "title": "IDSA Membership - Indian Direct Selling Association",
+    "issuingBody": "Indian Direct Selling Association (IDSA)",
+    "year": 2024,
+    "description": "Enagic India is a member in good standing of IDSA, the autonomous self-regulatory body for the direct selling industry in India.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/IDSA.jpg",
+    "fileType": "image",
+    "displayOrder": 13,
+    "isActive": true
+  },
+  {
+    "title": "FICCI Membership",
+    "issuingBody": "Federation of Indian Chambers of Commerce & Industry (FICCI)",
+    "year": 2024,
+    "description": "Enagic India is a member in good standing of FICCI, the largest and oldest apex business organisation in India.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/FICCI.jpeg",
+    "fileType": "image",
+    "displayOrder": 14,
+    "isActive": true
+  },
+  {
+    "title": "8-Point Business Model Trademark",
+    "issuingBody": "Intellectual Property Office",
+    "year": 2024,
+    "description": "Exclusive trademark status for Enagic's 8-Point Business Model.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/certificates_8point.jpg",
+    "fileType": "image",
+    "displayOrder": 15,
+    "isActive": true
+  },
+  {
+    "title": "Non-radioactive Contamination Inspection Report",
+    "issuingBody": "Third-party Inspection Agency",
+    "year": 2024,
+    "description": "Inspection report confirming all Enagic products are completely free of radiation and completely safe for use (post-2011 Japan earthquake verification).",
+    "fileUrl": "",
+    "fileType": "pdf",
+    "displayOrder": 16,
+    "isActive": true
+  },
+  {
+    "title": "Certificate of Incorporation - Enagic India",
+    "issuingBody": "Ministry of Corporate Affairs, Government of India",
+    "year": 2024,
+    "description": "Certificate of Incorporation for Enagic India Kangen Water Pvt. Ltd.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/Certificate-of-Incorporation_Enagic-India.pdf",
+    "fileType": "pdf",
+    "displayOrder": 17,
+    "isActive": true
+  },
+  {
+    "title": "GST Registration Certificate",
+    "issuingBody": "Government of India",
+    "year": 2024,
+    "description": "GST Registration Certificate for Enagic India Kangen Water Pvt. Ltd.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/GST-Registration-certificate_Enagic-India.pdf",
+    "fileType": "pdf",
+    "displayOrder": 18,
+    "isActive": true
+  },
+  {
+    "title": "Trademark Certificate",
+    "issuingBody": "Controller General of Patents, Designs & Trade Marks, India",
+    "year": 2024,
+    "description": "Trademark registration certificate for Enagic India.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/TM-Certificate.pdf",
+    "fileType": "pdf",
+    "displayOrder": 19,
+    "isActive": true
+  },
+  {
+    "title": "Articles of Association",
+    "issuingBody": "Enagic India Kangen Water Pvt. Ltd.",
+    "year": 2024,
+    "description": "Articles of Association for Enagic India Kangen Water Pvt. Ltd.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/Articles-of-Association_Enagic-India.pdf",
+    "fileType": "pdf",
+    "displayOrder": 20,
+    "isActive": true
+  },
+  {
+    "title": "Memorandum of Association",
+    "issuingBody": "Enagic India Kangen Water Pvt. Ltd.",
+    "year": 2024,
+    "description": "Memorandum of Association for Enagic India Kangen Water Pvt. Ltd.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/Memorandum-of-Association_Enagic-India.pdf",
+    "fileType": "pdf",
+    "displayOrder": 21,
+    "isActive": true
+  },
+  {
+    "title": "PAN Card Details",
+    "issuingBody": "Income Tax Department, Government of India",
+    "year": 2024,
+    "description": "PAN Card details for Enagic India Kangen Water Pvt. Ltd.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2024/10/PAN_Enagic-India.pdf",
+    "fileType": "pdf",
+    "displayOrder": 22,
+    "isActive": true
+  },
+  {
+    "title": "Consumer Grievance Redressal Policy",
+    "issuingBody": "Enagic India Kangen Water Pvt. Ltd.",
+    "year": 2026,
+    "description": "Consumer Grievance Redressal Policy as per Consumer Protection (Direct Selling) Rules, 2021.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2026/08/Consumer_Grievance_Redressal_Policy.pdf",
+    "fileType": "pdf",
+    "displayOrder": 23,
+    "isActive": true
+  },
+  {
+    "title": "List of Directors",
+    "issuingBody": "Enagic India Kangen Water Pvt. Ltd.",
+    "year": 2026,
+    "description": "Current list of directors of Enagic India Kangen Water Pvt. Ltd.",
+    "fileUrl": "https://enagic.co.in/wp-content/uploads/2026/08/List_of_Directors.pdf",
+    "fileType": "pdf",
+    "displayOrder": 24,
+    "isActive": true
+  }
+]
