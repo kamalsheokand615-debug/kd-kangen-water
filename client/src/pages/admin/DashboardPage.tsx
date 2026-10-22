@@ -41,7 +41,7 @@ export function DashboardPage() {
             <h1 className="font-display font-bold text-3xl text-gray-900">Dashboard</h1>
             <p className="text-gray-600 mt-1">Welcome back, {user?.email?.split('@')[0] || 'Admin'}</p>
           </div>
-          <Button variant="secondary" size="sm" onClick={refetch}>
+          <Button variant="secondary" size="sm" onClick={() => void refetch()}>
             <ArrowRight className="w-4 h-4 mr-1" />
             Refresh
           </Button>

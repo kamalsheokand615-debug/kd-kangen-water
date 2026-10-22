@@ -64,7 +64,7 @@ export function AdminFaqsPage() {
         showToast('FAQ created', 'success');
       }
       closeForm();
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to save FAQ', 'error');
     }
@@ -75,7 +75,7 @@ export function AdminFaqsPage() {
     try {
       await api.delete(`/admin/faqs/${deletingId}`);
       showToast('FAQ deleted', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to delete', 'error');
     } finally {
@@ -129,7 +129,7 @@ export function AdminFaqsPage() {
         await api.put(`/admin/faqs/${update.id}`, { displayOrder: update.displayOrder });
       }
       showToast('Order updated', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to update order', 'error');
     }
@@ -178,7 +178,7 @@ export function AdminFaqsPage() {
                   draggable
                   onDragStart={e => handleDragStart(e, item.id)}
                   onDragOver={handleDragOver}
-                  onDrop={e => handleDrop(e, item.id)}
+                  onDrop={e => void handleDrop(e, item.id)}
                   onDragEnd={handleDragEnd}
                   className={cn(draggingId === item.id && 'opacity-50 bg-water-50')}
                 >
@@ -252,7 +252,7 @@ export function AdminFaqsPage() {
       <ConfirmDialog
         isOpen={!!deletingId}
         onClose={() => setDeletingId(null)}
-        onConfirm={handleDelete}
+        onConfirm={() => void handleDelete()}
         title="Delete FAQ"
         message="Are you sure you want to delete this FAQ?"
         confirmText="Delete"

@@ -85,7 +85,7 @@ export function AdminProductsPage() {
 
       showToast(editingProduct ? 'Product updated successfully' : 'Product created successfully', 'success');
       closeForm();
-      refetch();
+      void refetch();
     } catch (error) {
       showToast('Failed to save product', 'error');
     } finally {
@@ -98,7 +98,7 @@ export function AdminProductsPage() {
     try {
       await api.delete(`/admin/products/${deletingId}`);
       showToast('Product deleted', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to delete product', 'error');
     } finally {
@@ -375,7 +375,7 @@ export function AdminProductsPage() {
       <ConfirmDialog
         isOpen={!!deletingId}
         onClose={() => setDeletingId(null)}
-        onConfirm={handleDelete}
+        onConfirm={() => void handleDelete()}
         title="Delete Product"
         message="Are you sure you want to delete this product? This action cannot be undone."
         confirmText="Delete"

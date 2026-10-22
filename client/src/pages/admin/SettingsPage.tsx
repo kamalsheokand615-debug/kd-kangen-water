@@ -92,7 +92,7 @@ export function AdminSettingsPage() {
     try {
       await api.put('/admin/settings', data);
       showToast('Settings saved successfully', 'success');
-      loadData();
+      void loadData();
     } catch {
       showToast('Failed to save settings', 'error');
     } finally {
@@ -117,7 +117,7 @@ export function AdminSettingsPage() {
 
       await api.put('/admin/hero', payload, { headers: { 'Content-Type': 'multipart/form-data' } });
       showToast('Hero content saved', 'success');
-      loadData();
+      void loadData();
     } catch {
       showToast('Failed to save hero content', 'error');
     } finally {

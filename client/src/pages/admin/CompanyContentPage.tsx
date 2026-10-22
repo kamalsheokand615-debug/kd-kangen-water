@@ -69,7 +69,7 @@ export function AdminCompanyContentPage() {
       await api.post('/admin/company-content', payload, { headers: { 'Content-Type': 'multipart/form-data' } });
       showToast('Content saved', 'success');
       closeForm();
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to save content', 'error');
     } finally {

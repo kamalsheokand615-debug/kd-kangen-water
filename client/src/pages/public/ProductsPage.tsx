@@ -51,7 +51,7 @@ export function ProductsPage() {
     if (sortOrder !== 'asc') params.set('sortOrder', sortOrder);
     if (inStockOnly) params.set('inStock', 'true');
     setSearchParams(params, { replace: true });
-    refetch();
+    void refetch();
   }, [searchTerm, selectedCategory, sortBy, sortOrder, inStockOnly, setSearchParams, refetch]);
 
   if (loading && !data) {
@@ -198,7 +198,7 @@ export function ProductsPage() {
               <Filter className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
               <p className="text-gray-600 mb-4">Try adjusting your filters or search terms.</p>
-              <Button variant="secondary" onClick={() => { setSearchTerm(''); setSelectedCategory(''); refetch(); }}>
+              <Button variant="secondary" onClick={() => { setSearchTerm(''); setSelectedCategory(''); void refetch(); }}>
                 Clear Filters
               </Button>
             </motion.div>

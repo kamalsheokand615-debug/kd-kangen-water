@@ -243,7 +243,7 @@ export function HomePage() {
               <motion.div key={index} variants={staggerItem} className="group">
                 <div className="card p-6 h-full">
                   <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
                       <svg key={i} className="w-5 h-5 text-amber-400 fill-current" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                     ))}
                   </div>
@@ -283,7 +283,7 @@ export function HomePage() {
           <div className="relative">
             {/* Background water droplets animation */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {[...Array(8)].map((_, i) => (
+              {Array.from({ length: 8 }).map((_, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-4 h-4 bg-water-300/20 rounded-full"
@@ -333,7 +333,7 @@ export function HomePage() {
 
                         {/* Water droplets around machine */}
                         <div className="absolute inset-0 pointer-events-none">
-                          {[...Array(4)].map((_, i) => (
+                          {Array.from({ length: 4 }).map((_, i) => (
                             <motion.div
                               key={i}
                               className="absolute w-2 h-2 bg-water-300/40 rounded-full"

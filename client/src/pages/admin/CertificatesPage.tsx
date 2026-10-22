@@ -73,7 +73,7 @@ export function AdminCertificatesPage() {
         showToast('Certificate created', 'success');
       }
       closeForm();
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to save certificate', 'error');
     } finally {
@@ -86,7 +86,7 @@ export function AdminCertificatesPage() {
     try {
       await api.delete(`/admin/certificates/${deletingId}`);
       showToast('Certificate deleted', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to delete', 'error');
     } finally {
@@ -143,7 +143,7 @@ export function AdminCertificatesPage() {
         await api.put(`/admin/certificates/${update.id}`, { displayOrder: update.displayOrder });
       }
       showToast('Order updated', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to update order', 'error');
     }
@@ -193,9 +193,9 @@ export function AdminCertificatesPage() {
                 <tr
                   key={item.id}
                   draggable
-                  onDragStart={e => handleDragStart(e, item.id)}
+                  onDragStart={e => void handleDragStart(e, item.id)}
                   onDragOver={handleDragOver}
-                  onDrop={e => handleDrop(e, item.id)}
+                  onDrop={e => void handleDrop(e, item.id)}
                   onDragEnd={handleDragEnd}
                   className={cn(draggingId === item.id && 'opacity-50 bg-water-50')}
                 >
@@ -315,7 +315,7 @@ export function AdminCertificatesPage() {
       <ConfirmDialog
         isOpen={!!deletingId}
         onClose={() => setDeletingId(null)}
-        onConfirm={handleDelete}
+        onConfirm={() => void handleDelete()}
         title="Delete Certificate"
         message="Are you sure you want to delete this certificate?"
         confirmText="Delete"

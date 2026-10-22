@@ -21,7 +21,7 @@ export function AdminContactMessagesPage() {
     try {
       await api.put(`/admin/contact-messages/${id}/read`);
       showToast('Marked as read', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to update', 'error');
     }
@@ -32,7 +32,7 @@ export function AdminContactMessagesPage() {
     try {
       await api.delete(`/admin/contact-messages/${deletingId}`);
       showToast('Message deleted', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to delete', 'error');
     } finally {
@@ -123,7 +123,7 @@ export function AdminContactMessagesPage() {
                       </button>
                       {!message.isRead && (
                         <button
-                          onClick={() => handleMarkRead(message.id)}
+                          onClick={() => void handleMarkRead(message.id)}
                           className="p-2 rounded-lg text-gray-400 hover:text-green-600 hover:bg-green-50 transition-colors"
                           aria-label="Mark as read"
                         >
@@ -218,7 +218,7 @@ export function AdminContactMessagesPage() {
             </div>
 
             {!viewingMessage.isRead && (
-              <Button onClick={() => handleMarkRead(viewingMessage.id)} className="w-full sm:w-auto">
+              <Button onClick={() => void handleMarkRead(viewingMessage.id)} className="w-full sm:w-auto">
                 <CheckCircle className="w-5 h-5 mr-2" />
                 Mark as Read
               </Button>
@@ -230,7 +230,7 @@ export function AdminContactMessagesPage() {
       <ConfirmDialog
         isOpen={!!deletingId}
         onClose={() => setDeletingId(null)}
-        onConfirm={handleDelete}
+        onConfirm={() => void handleDelete()}
         title="Delete Message"
         message="Are you sure you want to delete this message permanently?"
         confirmText="Delete"

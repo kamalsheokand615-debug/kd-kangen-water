@@ -31,7 +31,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
-    refreshSettings();
+    void refreshSettings();
   }, []);
 
   return (

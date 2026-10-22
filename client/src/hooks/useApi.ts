@@ -31,7 +31,7 @@ export function useProducts(params: {
   }, [params.page, params.limit, params.category, params.search, params.sortBy, params.sortOrder, params.inStock]);
 
   useEffect(() => {
-    fetchProducts();
+    void fetchProducts();
   }, [fetchProducts]);
 
   return { data, loading, error, refetch: fetchProducts };
@@ -55,7 +55,7 @@ export function useProduct(slug: string) {
         setLoading(false);
       }
     };
-    if (slug) fetchProduct();
+    if (slug) void fetchProduct();
   }, [slug]);
 
   return { product, loading, error };
@@ -77,7 +77,7 @@ export function useWaterTypes() {
         setLoading(false);
       }
     };
-    fetchWaterTypes();
+    void fetchWaterTypes();
   }, []);
 
   return { waterTypes, loading, error };
@@ -99,7 +99,7 @@ export function useCertificates() {
         setLoading(false);
       }
     };
-    fetchCertificates();
+    void fetchCertificates();
   }, []);
 
   return { certificates, loading, error };
@@ -121,7 +121,7 @@ export function useHistory() {
         setLoading(false);
       }
     };
-    fetchHistory();
+    void fetchHistory();
   }, []);
 
   return { history, loading, error };
@@ -143,7 +143,7 @@ export function useCompanyContent() {
         setLoading(false);
       }
     };
-    fetchContent();
+    void fetchContent();
   }, []);
 
   return { content, loading, error };
@@ -165,7 +165,7 @@ export function useFaqs() {
         setLoading(false);
       }
     };
-    fetchFaqs();
+    void fetchFaqs();
   }, []);
 
   return { faqs, loading, error };
@@ -198,7 +198,7 @@ export function useAdminProducts(params: {
   }, [params]);
 
   useEffect(() => {
-    fetchProducts();
+    void fetchProducts();
   }, [fetchProducts]);
 
   return { data, loading, error, refetch: fetchProducts };
@@ -223,7 +223,7 @@ export function useAdminWaterTypes() {
   }, []);
 
   useEffect(() => {
-    fetchWaterTypes();
+    void fetchWaterTypes();
   }, [fetchWaterTypes]);
 
   return { waterTypes, loading, error, refetch: fetchWaterTypes };
@@ -248,7 +248,7 @@ export function useAdminCertificates() {
   }, []);
 
   useEffect(() => {
-    fetchCertificates();
+    void fetchCertificates();
   }, [fetchCertificates]);
 
   return { certificates, loading, error, refetch: fetchCertificates };
@@ -273,7 +273,7 @@ export function useAdminHistory() {
   }, []);
 
   useEffect(() => {
-    fetchHistory();
+    void fetchHistory();
   }, [fetchHistory]);
 
   return { history, loading, error, refetch: fetchHistory };
@@ -298,7 +298,7 @@ export function useAdminCompanyContent() {
   }, []);
 
   useEffect(() => {
-    fetchContent();
+    void fetchContent();
   }, [fetchContent]);
 
   return { content, loading, error, refetch: fetchContent };
@@ -323,7 +323,7 @@ export function useAdminFaqs() {
   }, []);
 
   useEffect(() => {
-    fetchFaqs();
+    void fetchFaqs();
   }, [fetchFaqs]);
 
   return { faqs, loading, error, refetch: fetchFaqs };
@@ -352,7 +352,7 @@ export function useAdminContactMessages(params: {
   }, [params]);
 
   useEffect(() => {
-    fetchMessages();
+    void fetchMessages();
   }, [fetchMessages]);
 
   return { data, loading, error, refetch: fetchMessages };
@@ -375,7 +375,7 @@ export function useDashboardStats() {
   }, []);
 
   useEffect(() => {
-    fetchStats();
+    void fetchStats();
   }, [fetchStats]);
 
   return { stats, loading, error, refetch: fetchStats };

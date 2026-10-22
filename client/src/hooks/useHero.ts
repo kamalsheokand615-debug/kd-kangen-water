@@ -16,7 +16,7 @@ export function useHero() {
         setLoading(false);
       }
     };
-    fetchHero();
+    void fetchHero();
   }, []);
 
   return { hero, loading };

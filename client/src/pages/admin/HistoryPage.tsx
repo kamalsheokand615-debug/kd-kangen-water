@@ -69,7 +69,7 @@ export function AdminHistoryPage() {
         showToast('History entry created', 'success');
       }
       closeForm();
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to save history entry', 'error');
     } finally {
@@ -82,7 +82,7 @@ export function AdminHistoryPage() {
     try {
       await api.delete(`/admin/history/${deletingId}`);
       showToast('History entry deleted', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to delete', 'error');
     } finally {
@@ -138,7 +138,7 @@ export function AdminHistoryPage() {
         await api.put(`/admin/history/${update.id}`, { displayOrder: update.displayOrder });
       }
       showToast('Order updated', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to update order', 'error');
     }
@@ -188,7 +188,7 @@ export function AdminHistoryPage() {
                   draggable
                   onDragStart={e => handleDragStart(e, item.id)}
                   onDragOver={handleDragOver}
-                  onDrop={e => handleDrop(e, item.id)}
+                  onDrop={e => void handleDrop(e, item.id)}
                   onDragEnd={handleDragEnd}
                   className={cn(draggingId === item.id && 'opacity-50 bg-water-50')}
                 >
@@ -290,7 +290,7 @@ export function AdminHistoryPage() {
       <ConfirmDialog
         isOpen={!!deletingId}
         onClose={() => setDeletingId(null)}
-        onConfirm={handleDelete}
+        onConfirm={() => void handleDelete()}
         title="Delete History Entry"
         message="Are you sure you want to delete this history entry?"
         confirmText="Delete"

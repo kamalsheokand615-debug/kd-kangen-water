@@ -68,7 +68,7 @@ export function AdminWaterTypesPage() {
         showToast('Water type created', 'success');
       }
       closeForm();
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to save water type', 'error');
     }
@@ -79,7 +79,7 @@ export function AdminWaterTypesPage() {
     try {
       await api.delete(`/admin/water-types/${deletingId}`);
       showToast('Water type deleted', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to delete', 'error');
     } finally {
@@ -140,7 +140,7 @@ export function AdminWaterTypesPage() {
         await api.put(`/admin/water-types/${update.id}`, { displayOrder: update.displayOrder });
       }
       showToast('Order updated', 'success');
-      refetch();
+      void refetch();
     } catch {
       showToast('Failed to update order', 'error');
     }
@@ -190,7 +190,7 @@ export function AdminWaterTypesPage() {
                   draggable
                   onDragStart={e => handleDragStart(e, item.id)}
                   onDragOver={handleDragOver}
-                  onDrop={e => handleDrop(e, item.id)}
+                  onDrop={e => void handleDrop(e, item.id)}
                   onDragEnd={handleDragEnd}
                   className={cn(draggingId === item.id && 'opacity-50 bg-water-50')}
                 >
@@ -277,7 +277,7 @@ export function AdminWaterTypesPage() {
       <ConfirmDialog
         isOpen={!!deletingId}
         onClose={() => setDeletingId(null)}
-        onConfirm={handleDelete}
+        onConfirm={() => void handleDelete()}
         title="Delete Water Type"
         message="Are you sure you want to delete this water type?"
         confirmText="Delete"
