@@ -19,7 +19,9 @@
     "price": null,
     "contactForPrice": true,
     "category": "Water Ionizers",
-    "images": [],
+    "images": [
+      "/image/k8.avif"
+    ],
     "inStock": true,
     "displayOrder": 1,
     "metaTitle": "Leveluk K8 - Enagic Flagship Kangen Water Machine | K.D Kangen Water",
@@ -45,7 +47,11 @@
     "price": null,
     "contactForPrice": true,
     "category": "Water Ionizers",
-    "images": [],
+    "images": [
+      "/image/levluck dx.png",
+      "/dx model.webp",
+      "/image/hero section /dx model.webp"
+    ],
     "inStock": true,
     "displayOrder": 2,
     "metaTitle": "Leveluk SD501 - Enagic Bestseller Kangen Water Machine | K.D Kangen Water",
@@ -72,7 +78,10 @@
     "price": null,
     "contactForPrice": true,
     "category": "Water Ionizers",
-    "images": [],
+    "images": [
+      "/ -Platinum-.jpg",
+      "/-Platinum-.jpg"
+    ],
     "inStock": true,
     "displayOrder": 3,
     "metaTitle": "Leveluk SD501 Platinum - Premium Kangen Water Machine | K.D Kangen Water",
@@ -98,7 +107,9 @@
     "price": null,
     "contactForPrice": true,
     "category": "Water Ionizers",
-    "images": [],
+    "images": [
+      "/image/-leveluk-jriv.jpg"
+    ],
     "inStock": true,
     "displayOrder": 4,
     "metaTitle": "Leveluk JR IV - Compact Kangen Water Machine | K.D Kangen Water",
