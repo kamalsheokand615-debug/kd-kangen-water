@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+/* eslint-disable react-refresh/only-export-components */
+
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { api, SiteSettings, HeroContent } from '../utils/api';
 
 interface SettingsContextType {
@@ -15,7 +17,7 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
   const [hero, setHero] = useState<HeroContent | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const refreshSettings = async () => {
+  const refreshSettings = useCallback(async () => {
     try {
       const [settingsRes, heroRes] = await Promise.all([
         api.get<SiteSettings>('/settings'),
@@ -28,11 +30,11 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     void refreshSettings();
-  }, []);
+  }, [refreshSettings]);
 
   return (
     <SettingsContext.Provider value={{ settings, hero, loading, refreshSettings }}>

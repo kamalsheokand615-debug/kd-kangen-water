@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Download } from 'lucide-react';
 import { cn } from '../../utils/helpers';
@@ -23,6 +23,14 @@ export function Lightbox({ isOpen, onClose, items, initialIndex = 0 }: LightboxP
     setCurrentIndex(initialIndex);
   }, [initialIndex, isOpen]);
 
+  const goToPrev = useCallback(() => {
+    setCurrentIndex(prev => (prev === 0 ? items.length - 1 : prev - 1));
+  }, [items.length]);
+
+  const goToNext = useCallback(() => {
+    setCurrentIndex(prev => (prev === items.length - 1 ? 0 : prev + 1));
+  }, [items.length]);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isOpen) return;
@@ -32,15 +40,7 @@ export function Lightbox({ isOpen, onClose, items, initialIndex = 0 }: LightboxP
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, items.length]);
-
-  const goToPrev = () => {
-    setCurrentIndex(prev => (prev === 0 ? items.length - 1 : prev - 1));
-  };
-
-  const goToNext = () => {
-    setCurrentIndex(prev => (prev === items.length - 1 ? 0 : prev + 1));
-  };
+  }, [isOpen, goToNext, goToPrev, onClose]);
 
   const currentItem = items[currentIndex];
 

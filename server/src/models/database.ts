@@ -7,7 +7,7 @@ import { config } from '../config/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const dbPath = join(__dirname, '..', '..', config.database.path);
+const dbPath = join(__dirname, '..', config.database.path);
 const dbDir = dirname(dbPath);
 
 if (!existsSync(dbDir)) {

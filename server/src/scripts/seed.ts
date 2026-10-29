@@ -24,7 +24,7 @@ async function seed() {
   
   await initializeDatabase();
 
-  // Create admin user
+  // Create or update admin user
   const adminExists = get('SELECT id FROM users WHERE email = ?', [config.admin.email]);
   if (!adminExists) {
     const hash = await bcrypt.hash(config.admin.password, 12);
@@ -33,7 +33,14 @@ async function seed() {
     save();
     console.log('Created admin user:', config.admin.email);
   } else {
-    console.log('Admin user already exists');
+    const hash = await bcrypt.hash(config.admin.password, 12);
+    run(`
+      UPDATE users
+      SET password_hash = ?, name = ?, role = ?, updated_at = CURRENT_TIMESTAMP
+      WHERE email = ?
+    `, [hash, 'Admin User', 'admin', config.admin.email]);
+    save();
+    console.log('Updated admin user:', config.admin.email);
   }
 
   // Seed Products
@@ -93,6 +100,18 @@ async function seed() {
       ]);
       save();
       console.log(`Seeded water type: ${w.name}`);
+    } else {
+      run(`
+        UPDATE water_types
+        SET ph_min = ?, ph_max = ?, description = ?, uses = ?, color = ?, display_order = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE id = ?
+      `, [
+        w.phMin, w.phMax, w.description,
+        JSON.stringify(w.uses), w.color, w.displayOrder, w.isActive ? 1 : 0,
+        (existing as { id: number }).id
+      ]);
+      save();
+      console.log(`Updated water type: ${w.name}`);
     }
   }
 

@@ -15,6 +15,26 @@ const features = [
   { icon: Award, title: 'Expert Support', desc: 'Certified technicians for service', link: '/contact' },
 ];
 
+const trustStats = [
+  { value: '50+', label: 'Years of innovation' },
+  { value: '40+', label: 'Countries worldwide' },
+  { value: '1M+', label: 'Machines sold' },
+  { value: '24/7', label: 'Support assistance' },
+];
+
+const processSteps = [
+  { number: '01', title: 'Assess your needs', text: 'Choose the right Enagic machine based on family size, home usage, and wellness goals.' },
+  { number: '02', title: 'Install with confidence', text: 'Our team helps you set up the system and ensure your water quality is optimized from day one.' },
+  { number: '03', title: 'Enjoy better hydration', text: 'Experience cleaner, smoother, mineral-rich water for drinking, cooking, cleaning, and self-care.' },
+];
+
+const benefits = [
+  'Hydrogen-rich alkaline water for daily wellness',
+  'Certified global technology with Japanese quality',
+  'Suitable for home, family, and commercial use',
+  'Supports cooking, cleaning, and personal care routines',
+];
+
 // Machine data for showcase
 const machineShowcase = [
   { name: 'Leveluk K8', icon: Cpu, color: 'from-blue-500 to-indigo-600', plates: 8, desc: 'Flagship model with 8 platinum plates' },
@@ -185,6 +205,94 @@ export function HomePage() {
                 </Link>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-gray-50" aria-labelledby="trust-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-16 text-center"
+            variants={fadeInUp}
+          >
+            <span className="inline-block px-4 py-1 rounded-full bg-water-100 text-water-700 text-sm font-medium mb-4">
+              Global trust, local support
+            </span>
+            <h2 id="trust-heading" className="font-display font-bold text-3xl sm:text-4xl text-gray-900 mb-4">
+              A trusted name in healthy living
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {trustStats.map((stat) => (
+              <motion.div key={stat.label} variants={staggerItem} className="card p-6 text-center">
+                <div className="text-3xl font-display font-bold text-water-700 mb-2">{stat.value}</div>
+                <div className="text-sm text-gray-600">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section bg-white" aria-labelledby="benefits-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+              <span className="inline-block px-4 py-1 rounded-full bg-water-100 text-water-700 text-sm font-medium mb-4">
+                Why Kangen Water
+              </span>
+              <h2 id="benefits-heading" className="font-display font-bold text-3xl sm:text-4xl text-gray-900 mb-5">
+                Cleaner water for everyday wellness and a healthier life
+              </h2>
+              <p className="text-lg text-gray-600 mb-8">
+                Enagic water ionizers transform ordinary tap water into cleaner, smoother, hydrogen-rich water designed to support daily hydration, home care, and personal wellness routines.
+              </p>
+
+              <div className="space-y-4">
+                {benefits.map((benefit) => (
+                  <div key={benefit} className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 border border-gray-100">
+                    <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-water-100 text-water-700 flex items-center justify-center">
+                      <Droplet className="w-3.5 h-3.5" />
+                    </div>
+                    <p className="text-gray-700">{benefit}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="card overflow-hidden"
+            >
+              <div className="bg-gradient-to-br from-water-900 via-water-700 to-aqua-700 p-8 text-white">
+                <div className="flex items-center justify-between mb-8">
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.2em] text-white/70">Technology</p>
+                    <h3 className="font-display text-2xl font-bold">Water ionization</h3>
+                  </div>
+                  <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center">
+                    <Sparkles className="w-6 h-6" />
+                  </div>
+                </div>
+
+                <div className="space-y-5">
+                  {processSteps.map((step) => (
+                    <div key={step.number} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-xs font-semibold tracking-[0.2em] text-aqua-200">{step.number}</span>
+                        <h4 className="font-display text-lg font-semibold">{step.title}</h4>
+                      </div>
+                      <p className="text-sm text-white/80">{step.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

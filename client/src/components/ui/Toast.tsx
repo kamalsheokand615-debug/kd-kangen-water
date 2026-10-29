@@ -1,3 +1,5 @@
+/* eslint-disable react-refresh/only-export-components */
+
 import toast, { DefaultToastOptions } from 'react-hot-toast';
 
 const defaultOptions: DefaultToastOptions = {
