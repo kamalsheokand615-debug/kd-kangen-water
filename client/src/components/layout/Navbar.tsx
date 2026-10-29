@@ -4,17 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Droplet } from 'lucide-react';
 import { cn } from '../../utils/helpers';
 import { useSettings } from '../../context/SettingsContext';
-
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About Enagic' },
-  { href: '/history', label: 'History' },
-  { href: '/water-types', label: '7 Types of Water' },
-  { href: '/products', label: 'Products' },
-  { href: '/certificates', label: 'Certificates' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/contact', label: 'Contact' },
-];
+import { navLinks } from './navigation';
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,7 +23,6 @@ export function Navbar() {
   }, [location.pathname]);
 
   const siteName = settings.site_name || 'K.D Kangen Water';
-  const tagline = settings.site_tagline || 'Authorized Enagic Distributor';
   const whatsapp = settings.whatsapp || '91XXXXXXXXXX';
 
   return (
@@ -50,7 +39,6 @@ export function Navbar() {
               </div>
               <div className="hidden sm:block">
                 <span className="font-display font-semibold text-xl text-gray-900">{siteName}</span>
-                <span className="block text-xs text-gray-500 font-sans">{tagline}</span>
               </div>
             </Link>
 

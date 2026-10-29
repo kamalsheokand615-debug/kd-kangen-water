@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom';
 import { Droplet, Facebook, Instagram, Youtube, Linkedin, MapPin, Phone, Mail, MessageCircle } from 'lucide-react';
 import { cn } from '../../utils/helpers';
 import { useSettings } from '../../context/SettingsContext';
+import { navLinks } from './navigation';
 
 export function Footer() {
   const { settings } = useSettings();
 
   const siteName = settings.site_name || 'K.D Kangen Water';
-  const tagline = settings.site_tagline || 'Authorized Enagic Distributor';
+  const tagline = settings.site_tagline || '';
   const phone = settings.phone || '+91-XXXXXXXXXX';
   const whatsapp = settings.whatsapp || '91XXXXXXXXXX';
   const email = settings.email || 'info@kdkangenwater.com';
@@ -16,7 +17,7 @@ export function Footer() {
   const instagramUrl = settings.instagram_url || '#';
   const youtubeUrl = settings.youtube_url || '#';
   const linkedinUrl = settings.linkedin_url || '#';
-  const footerText = settings.footer_text || `© 2024 ${siteName}. Authorized Enagic Distributor. All rights reserved.`;
+  const footerText = settings.footer_text || `© 2024 ${siteName}. All rights reserved.`;
   const disclaimerText = settings.disclaimer_text || 'This is an independent website of an authorized distributor/representative (K.D). Enagic trademarks belong to Enagic Co., Ltd. The information provided is as stated by the manufacturer and is not medical advice.';
 
   const socialLinks = [
@@ -37,7 +38,7 @@ export function Footer() {
               </div>
               <div>
                 <span className="font-display font-semibold text-xl text-white">{siteName}</span>
-                <span className="block text-xs text-gray-400 font-sans">{tagline}</span>
+                {tagline && tagline.trim() && <span className="block text-xs text-gray-400 font-sans">{tagline}</span>}
               </div>
             </Link>
             <p className="text-gray-400 mb-6 max-w-xs">
@@ -64,13 +65,11 @@ export function Footer() {
             <h3 className="font-display font-medium text-lg text-white mb-4">Quick Links</h3>
             <nav aria-label="Footer navigation">
               <ul className="space-y-2">
-                <li><Link to="/about" className="hover:text-water-400 transition-colors">About Enagic</Link></li>
-                <li><Link to="/history" className="hover:text-water-400 transition-colors">History</Link></li>
-                <li><Link to="/water-types" className="hover:text-water-400 transition-colors">7 Types of Water</Link></li>
-                <li><Link to="/products" className="hover:text-water-400 transition-colors">Products</Link></li>
-                <li><Link to="/certificates" className="hover:text-water-400 transition-colors">Certificates</Link></li>
-                <li><Link to="/faq" className="hover:text-water-400 transition-colors">FAQ</Link></li>
-                <li><Link to="/contact" className="hover:text-water-400 transition-colors">Contact Us</Link></li>
+                {navLinks.map(({ href, label }) => (
+                  <li key={href}>
+                    <Link to={href} className="hover:text-water-400 transition-colors">{label}</Link>
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>

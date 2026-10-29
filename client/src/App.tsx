@@ -3,12 +3,10 @@ import { PublicLayout, AdminLayout } from './components/layout/Layout';
 import { ProtectedRoute } from './components/layout/ProtectedRoute';
 import { HomePage } from './pages/public/HomePage';
 import { AboutPage } from './pages/public/AboutPage';
-import { HistoryPage } from './pages/public/HistoryPage';
 import { WaterTypesPage } from './pages/public/WaterTypesPage';
 import { ProductsPage } from './pages/public/ProductsPage';
 import { ProductDetailPage } from './pages/public/ProductDetailPage';
 import { CertificatesPage } from './pages/public/CertificatesPage';
-import { FAQPage } from './pages/public/FAQPage';
 import { ContactPage } from './pages/public/ContactPage';
 import { WarrantyPage } from './pages/public/WarrantyPage';
 import { NotFoundPage } from './pages/public/NotFoundPage';
@@ -29,12 +27,10 @@ function App() {
       <Route element={<PublicLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
-        <Route path="/history" element={<HistoryPage />} />
         <Route path="/water-types" element={<WaterTypesPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:slug" element={<ProductDetailPage />} />
         <Route path="/certificates" element={<CertificatesPage />} />
-        <Route path="/faq" element={<FAQPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/warranty" element={<WarrantyPage />} />
         <Route path="/admin/login" element={<LoginPage />} />

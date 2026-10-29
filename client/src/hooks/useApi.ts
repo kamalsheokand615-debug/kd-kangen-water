@@ -28,7 +28,7 @@ export function useProducts(params: {
     } finally {
       setLoading(false);
     }
-  }, [params.page, params.limit, params.category, params.search, params.sortBy, params.sortOrder, params.inStock]);
+  }, [params]);
 
   useEffect(() => {
     void fetchProducts();

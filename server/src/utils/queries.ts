@@ -61,7 +61,7 @@ export function getAllProducts(options: {
   const products = all(`SELECT * FROM products ${where} ORDER BY ${sortColumn} ${order} LIMIT ? OFFSET ?`, [...params, limit, offset]);
 
   return {
-    data: (products as Record<string, unknown>[]).map(p => ({
+    data: (products).map(p => ({
       ...mapRow(p),
       features: p.features ? JSON.parse(p.features as string) : [],
       images: p.images ? JSON.parse(p.images as string) : [],
@@ -188,7 +188,7 @@ export function getAllWaterTypes(activeOnly = true) {
   let query = 'SELECT * FROM water_types';
   if (activeOnly) query += ' WHERE is_active = 1';
   query += ' ORDER BY display_order, id';
-  return (all(query) as Record<string, unknown>[]).map(w => ({
+  return (all(query)).map(w => ({
     ...mapRow(w),
     uses: w.uses ? JSON.parse(w.uses as string) : [],
   }));
