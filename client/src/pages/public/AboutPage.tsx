@@ -124,12 +124,13 @@ export function AboutPage() {
                   <div className={cn('md:flex', index % 2 === 1 ? 'md:flex-row-reverse' : '')}>
                     {sectionData.imageUrl && (
                       <div className="md:w-1/2 relative h-64 md:h-auto">
-                        <img
-                          src={sectionData.imageUrl}
-                          alt={sectionData.title || section.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
+                          <img
+                            src={sectionData.imageUrl}
+                            alt={sectionData.title || section.title}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
                       </div>
                     )}
                     <div className="md:w-1/2 p-6 md:p-8 flex flex-col justify-center">

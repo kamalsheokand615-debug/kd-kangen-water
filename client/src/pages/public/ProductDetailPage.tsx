@@ -74,14 +74,22 @@ export function ProductDetailPage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} variants={fadeInUp}>
-              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 mb-4">
+              <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-gray-100 mb-4 cursor-pointer">
                 {product.images.length > 0 ? (
-                  <img
-                    src={product.images[0]}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                    id="main-image"
-                  />
+                  <button
+                    onClick={() => { setLightboxIndex(0); setLightboxOpen(true); }}
+                    className="w-full h-full"
+                    aria-label={`View ${product.name} image`}
+                  >
+                    <img
+                      src={product.images[0]}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                      id="main-image"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </button>
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-gray-400">
                     <svg className="w-24 h-24" fill="none" stroke="currentColor" viewBox="0 0 24 24">

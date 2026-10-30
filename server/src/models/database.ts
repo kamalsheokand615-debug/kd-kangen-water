@@ -188,10 +188,10 @@ function createTables(sqlDb: Database) {
   const defaultSettings = [
     { key: 'site_name', value: 'K.D Kangen Water', type: 'text', desc: 'Website name' },
     { key: 'site_tagline', value: 'Authorized Enagic Distributor', type: 'text', desc: 'Tagline' },
-    { key: 'phone', value: '+91-XXXXXXXXXX', type: 'text', desc: 'Contact phone' },
-    { key: 'whatsapp', value: '91XXXXXXXXXX', type: 'text', desc: 'WhatsApp number (with country code, no +)' },
+    { key: 'phone', value: '+91-9896007699', type: 'text', desc: 'Contact phone' },
+    { key: 'whatsapp', value: '919896007699', type: 'text', desc: 'WhatsApp number (with country code, no +)' },
     { key: 'email', value: 'info@kdkangenwater.com', type: 'text', desc: 'Contact email' },
-    { key: 'address', value: 'Your Address Here, City, State, PIN', type: 'text', desc: 'Physical address' },
+    { key: 'address', value: 'Badanpur, Narwana, Jind, Haryana', type: 'text', desc: 'Physical address' },
     { key: 'facebook_url', value: '', type: 'text', desc: 'Facebook page URL' },
     { key: 'instagram_url', value: '', type: 'text', desc: 'Instagram profile URL' },
     { key: 'youtube_url', value: '', type: 'text', desc: 'YouTube channel URL' },

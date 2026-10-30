@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { TouchEvent as ReactTouchEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ChevronLeft, ChevronRight, Download } from 'lucide-react';
 import { cn } from '../../utils/helpers';
@@ -43,6 +44,43 @@ export function Lightbox({ isOpen, onClose, items, initialIndex = 0 }: LightboxP
   }, [isOpen, goToNext, goToPrev, onClose]);
 
   const currentItem = items[currentIndex];
+
+  const touchStartRef = useRef<{ x: number; y: number; time: number } | null>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  const handleTouchStart = useCallback((e: ReactTouchEvent<HTMLDivElement>) => {
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY, time: Date.now() };
+  }, []);
+
+  const handleTouchMove = useCallback((e: ReactTouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current) return;
+    const touch = e.touches[0];
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+    if (Math.abs(dx) > Math.abs(dy)) {
+      e.preventDefault();
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback((e: ReactTouchEvent<HTMLDivElement>) => {
+    if (!touchStartRef.current) return;
+    const touch = e.changedTouches[0];
+    const dx = touch.clientX - touchStartRef.current.x;
+    const dy = touch.clientY - touchStartRef.current.y;
+    const dt = Date.now() - touchStartRef.current.time;
+    const threshold = 50;
+
+    if (dt < 300) {
+      if (Math.abs(dx) > threshold && Math.abs(dx) > Math.abs(dy)) {
+        if (dx > 0) goToPrev();
+        else goToNext();
+      } else if (dy > threshold && Math.abs(dy) > Math.abs(dx)) {
+        onClose();
+      }
+    }
+    touchStartRef.current = null;
+  }, [goToNext, goToPrev, onClose]);
 
   const handleDownload = () => {
     const link = document.createElement('a');
@@ -99,7 +137,14 @@ export function Lightbox({ isOpen, onClose, items, initialIndex = 0 }: LightboxP
             </div>
           </div>
 
-          <div className="flex-1 flex items-center justify-center overflow-hidden relative">
+          <div
+            ref={imageRef}
+            className="flex-1 flex items-center justify-center overflow-hidden relative"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{ touchAction: 'none' }}
+          >
             {items.length > 1 && (
               <>
                 <button

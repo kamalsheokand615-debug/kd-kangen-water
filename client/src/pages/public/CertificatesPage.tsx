@@ -116,12 +116,19 @@ export function CertificatesPage() {
                         <div className="card h-full overflow-hidden">
                           <div className="relative aspect-[4/3] bg-gray-100 overflow-hidden">
                             {cert.fileUrl && cert.fileType === 'image' ? (
-                              <img
-                                src={cert.fileUrl}
-                                alt={cert.title}
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                                loading="lazy"
-                              />
+                              <button
+                                onClick={() => { setLightboxIndex(activeCertificates.findIndex(c => c.id === cert.id)); setLightboxOpen(true); }}
+                                className="w-full h-full"
+                                aria-label={`View ${cert.title} full size`}
+                              >
+                                <img
+                                  src={cert.fileUrl}
+                                  alt={cert.title}
+                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                  loading="lazy"
+                                  decoding="async"
+                                />
+                              </button>
                             ) : (
                               <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-water-100 to-aqua-100">
                                 <FileText className="w-16 h-16 text-water-400" />

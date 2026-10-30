@@ -73,6 +73,20 @@ async function seed() {
       ]);
       save();
       console.log(`Seeded product: ${p.name}`);
+    } else {
+      run(`
+        UPDATE products
+        SET name = ?, description = ?, features = ?, price = ?, contact_for_price = ?, category = ?, images = ?, in_stock = ?, display_order = ?, meta_title = ?, meta_description = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE slug = ?
+      `, [
+        p.name, p.description, JSON.stringify(p.features),
+        p.price, p.contactForPrice ? 1 : 0, p.category,
+        JSON.stringify(p.images), p.inStock ? 1 : 0, p.displayOrder,
+        p.metaTitle, p.metaDescription,
+        p.slug
+      ]);
+      save();
+      console.log(`Updated product: ${p.name}`);
     }
   }
 

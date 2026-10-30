@@ -1,20 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
-import { motion } from 'framer-motion';
+import { ScrollToTop } from './ScrollToTop';
 
 export function PublicLayout() {
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
+      <ScrollToTop />
       <Navbar />
       <main className="flex-1" id="main-content" role="main">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, ease: 'easeOut' }}
-        >
-          <Outlet />
-        </motion.div>
+        <Outlet />
       </main>
       <Footer />
     </div>
