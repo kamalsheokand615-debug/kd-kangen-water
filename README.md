@@ -111,10 +111,10 @@ npm run dev
 ```
 
 ### Access URLs
-- **Frontend:** http://localhost:5173
-- **Backend API:** http://localhost:3001
-- **Admin Panel:** http://localhost:5173/admin
-- **Admin Login:** http://localhost:5173/admin/login
+- **Frontend:** http://localhost:4173
+- **Backend API:** http://localhost:3002
+- **Admin Panel:** http://localhost:4173/admin
+- **Admin Login:** http://localhost:4173/admin/login
 
 ## 🔐 Admin Access
 
@@ -188,7 +188,7 @@ See `docs/sources.md` for list of images/certificates you must provide:
 ### Environment Variables (Production)
 ```env
 NODE_ENV=production
-PORT=3001
+PORT=3002
 CLIENT_URL=https://yourdomain.com
 JWT_SECRET=your-very-long-random-secret-min-32-chars
 # ... other vars
@@ -221,7 +221,7 @@ server {
 
     # API & Uploads
     location /api/ {
-        proxy_pass http://localhost:3001;
+        proxy_pass http://localhost:3002;
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
@@ -232,7 +232,7 @@ server {
     }
 
     location /uploads/ {
-        proxy_pass http://localhost:3001;
+        proxy_pass http://localhost:3002;
     }
 }
 ```

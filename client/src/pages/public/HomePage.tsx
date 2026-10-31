@@ -52,6 +52,28 @@ export function HomePage() {
     <div className="relative">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden" aria-labelledby="hero-heading">
         <div className="absolute inset-0 bg-gradient-to-br from-water-900 via-water-700 to-aqua-800" />
+
+        {hero?.backgroundVideoUrl ? (
+          <video
+            className="absolute inset-0 w-full h-full object-cover"
+            src={hero.backgroundVideoUrl}
+            autoPlay
+            muted
+            loop
+            playsInline
+            aria-hidden="true"
+          />
+        ) : hero?.backgroundImageUrl ? (
+          <img
+            className="absolute inset-0 w-full h-full object-cover"
+            src={hero.backgroundImageUrl}
+            alt=""
+            aria-hidden="true"
+          />
+        ) : null}
+        {(hero?.backgroundVideoUrl || hero?.backgroundImageUrl) && (
+          <div className="absolute inset-0 bg-water-900/60" />
+        )}
         
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">

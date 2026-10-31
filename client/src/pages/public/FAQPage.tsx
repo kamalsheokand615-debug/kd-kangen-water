@@ -1,16 +1,21 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Search, HelpCircle } from 'lucide-react';
 import { fadeInUp, staggerContainer, staggerItem } from '../../utils/animations';
 import { useFaqs } from '../../hooks/useApi';
+import { useSettings } from '../../context/SettingsContext';
 import { FAQ } from '../../utils/types';
 import { cn } from '../../utils/helpers';
 
 export function FAQPage() {
   const { faqs, loading } = useFaqs();
+  const { settings } = useSettings();
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<string>('all');
+
+  const whatsapp = settings.whatsapp || '919896007699';
 
   const activeFaqs = faqs.filter(f => f.isActive).sort((a, b) => a.displayOrder - b.displayOrder);
   const categories: string[] = ['all', ...new Set(activeFaqs.map(f => f.category).filter((c): c is string => Boolean(c)))];
@@ -157,8 +162,8 @@ export function FAQPage() {
               Our team of Kangen Water experts is here to help. Get personalized answers to your specific questions.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="/contact" className="btn-primary text-lg px-10 py-4">Contact Us</a>
-              <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="btn-accent text-lg px-10 py-4">
+              <Link to="/contact" className="btn-primary text-lg px-10 py-4">Contact Us</Link>
+              <a href={`https://wa.me/${whatsapp}`} target="_blank" rel="noopener noreferrer" className="btn-accent text-lg px-10 py-4">
                 WhatsApp Us
               </a>
             </div>

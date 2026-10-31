@@ -1,14 +1,10 @@
 import multer from 'multer';
-import { fileURLToPath } from 'url';
-import { dirname, join, extname } from 'path';
+import { extname } from 'path';
 import { existsSync, mkdirSync } from 'fs';
 import { config } from '../config/index.js';
 import { AppError } from './errorHandler.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const uploadDir = join(__dirname, '..', '..', config.upload.dir);
+const uploadDir = config.upload.dir;
 
 if (!existsSync(uploadDir)) {
   mkdirSync(uploadDir, { recursive: true });

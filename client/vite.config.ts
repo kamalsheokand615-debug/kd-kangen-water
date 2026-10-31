@@ -7,6 +7,9 @@ import { fileURLToPath } from 'url';
 const __filename: string = fileURLToPath(import.meta.url as unknown as string);
 const __dirname: string = path.dirname(__filename);
 
+const apiPort = Number(process.env.PORT || 3002);
+const devPort = Number(process.env.VITE_PORT || 4173);
+
 export default defineConfig({
   plugins: [react()],
   resolve: {
@@ -15,14 +18,14 @@ export default defineConfig({
     },
   },
   server: {
-    port: 5173,
+    port: devPort,
     proxy: {
       '/api': {
-        target: 'http://localhost:3001',
+        target: `http://localhost:${apiPort}`,
         changeOrigin: true,
       },
       '/uploads': {
-        target: 'http://localhost:3001',
+        target: `http://localhost:${apiPort}`,
         changeOrigin: true,
       },
     },

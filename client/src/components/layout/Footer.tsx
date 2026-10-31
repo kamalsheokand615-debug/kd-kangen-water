@@ -9,10 +9,10 @@ export function Footer() {
 
   const siteName = settings.site_name || 'K.D Kangen Water';
   const tagline = settings.site_tagline || '';
-  const phone = settings.phone || '+91-XXXXXXXXXX';
-  const whatsapp = settings.whatsapp || '91XXXXXXXXXX';
+  const phone = settings.phone || '+91-9896007699';
+  const whatsapp = settings.whatsapp || '919896007699';
   const email = settings.email || 'info@kdkangenwater.com';
-  const address = settings.address || 'Your Address Here, City, State, PIN';
+  const address = settings.address || 'Badanpur, Narwana, Jind, Haryana';
   const facebookUrl = settings.facebook_url || '#';
   const instagramUrl = settings.instagram_url || '#';
   const youtubeUrl = settings.youtube_url || '#';

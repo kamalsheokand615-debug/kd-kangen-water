@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { fadeInUp } from '../../utils/animations';
 import { useHistory } from '../../hooks/useApi';
@@ -144,12 +145,12 @@ export function HistoryPage() {
               Enagic continues to innovate with new technologies, expanded global reach, and a commitment to True Health through the power of water.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="/products" className="btn-primary text-lg px-10 py-4">
+              <Link to="/products" className="btn-primary text-lg px-10 py-4">
                 View Current Products
-              </a>
-              <a href="/about" className="btn-secondary text-lg px-10 py-4">
+              </Link>
+              <Link to="/about" className="btn-secondary text-lg px-10 py-4">
                 Learn More About Enagic
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>

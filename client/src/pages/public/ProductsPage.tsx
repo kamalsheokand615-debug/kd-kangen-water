@@ -17,16 +17,17 @@ const categories = [
 ];
 
 const sortOptions = [
-  { value: 'displayOrder', label: 'Featured' },
-  { value: 'name', label: 'Name A-Z' },
-  { value: 'price', label: 'Price: Low to High' },
-  { value: '-price', label: 'Price: High to Low' },
-  { value: 'createdAt', label: 'Newest' },
+  { value: 'displayOrder:asc', label: 'Featured' },
+  { value: 'name:asc', label: 'Name A-Z' },
+  { value: 'price:asc', label: 'Price: Low to High' },
+  { value: 'price:desc', label: 'Price: High to Low' },
+  { value: 'createdAt:desc', label: 'Newest' },
 ];
 
 export function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [showFilters, setShowFilters] = useState(false);
+  const [page, setPage] = useState(() => Math.max(1, Number(searchParams.get('page')) || 1));
   const [searchTerm, setSearchTerm] = useState(searchParams.get('search') || '');
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || '');
   const [sortBy, setSortBy] = useState(searchParams.get('sortBy') || 'displayOrder');
@@ -34,7 +35,7 @@ export function ProductsPage() {
   const [inStockOnly, setInStockOnly] = useState(searchParams.get('inStock') === 'true');
 
   const { data, loading, error, refetch } = useProducts({
-    page: 1,
+    page,
     limit: 12,
     category: selectedCategory || undefined,
     search: searchTerm || undefined,
@@ -47,12 +48,14 @@ export function ProductsPage() {
     const params = new URLSearchParams();
     if (searchTerm) params.set('search', searchTerm);
     if (selectedCategory) params.set('category', selectedCategory);
-    if (sortBy !== 'displayOrder') params.set('sortBy', sortBy);
-    if (sortOrder !== 'asc') params.set('sortOrder', sortOrder);
+    if (sortBy !== 'displayOrder' || sortOrder !== 'asc') {
+      params.set('sortBy', sortBy);
+      params.set('sortOrder', sortOrder);
+    }
     if (inStockOnly) params.set('inStock', 'true');
+    if (page > 1) params.set('page', String(page));
     setSearchParams(params, { replace: true });
-    void refetch();
-  }, [searchTerm, selectedCategory, sortBy, sortOrder, inStockOnly, setSearchParams, refetch]);
+  }, [searchTerm, selectedCategory, sortBy, sortOrder, inStockOnly, page, setSearchParams]);
 
   if (loading && !data) {
     return (
@@ -111,7 +114,7 @@ export function ProductsPage() {
                   type="text"
                   placeholder="Search products..."
                   value={searchTerm}
-                  onChange={e => setSearchTerm(e.target.value)}
+                  onChange={e => { setSearchTerm(e.target.value); setPage(1); }}
                   className="input pl-10 w-64"
                   aria-label="Search products"
                 />
@@ -119,7 +122,7 @@ export function ProductsPage() {
 
               <Select
                 value={selectedCategory}
-                onChange={e => setSelectedCategory(e.target.value)}
+                onChange={e => { setSelectedCategory(e.target.value); setPage(1); }}
                 options={[{ value: '', label: 'All Categories' }, ...categories.map(c => ({ value: c, label: c }))]}
                 placeholder="Filter by category"
                 className="w-48"
@@ -131,8 +134,9 @@ export function ProductsPage() {
                   const [s, o] = e.target.value.split(':');
                   setSortBy(s);
                   setSortOrder(o as 'asc' | 'desc');
+                  setPage(1);
                 }}
-                options={sortOptions.map(o => ({ value: `${o.value}:asc`, label: o.label }))}
+                options={sortOptions}
                 placeholder="Sort by"
                 className="w-48"
               />
@@ -161,23 +165,25 @@ export function ProductsPage() {
                     <input
                       type="checkbox"
                       checked={inStockOnly}
-                      onChange={e => setInStockOnly(e.target.checked)}
+                      onChange={e => { setInStockOnly(e.target.checked); setPage(1); }}
                       className="w-4 h-4 text-water-600 border-gray-300 rounded focus:ring-water-500"
                     />
                     <span className="text-sm text-gray-700">In stock only</span>
                   </label>
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <span className="text-sm text-gray-700">Price:</span>
-                    <Select
-                      value={inStockOnly ? 'asc' : ''}
-                      onChange={e => setSortOrder(e.target.value as 'asc' | 'desc')}
-                      options={[
-                        { value: 'asc', label: 'Low to High' },
-                        { value: 'desc', label: 'High to Low' },
-                      ]}
-                      className="w-40"
-                    />
-                  </label>
+                  {(searchTerm || selectedCategory || inStockOnly) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setSearchTerm('');
+                        setSelectedCategory('');
+                        setInStockOnly(false);
+                        setPage(1);
+                      }}
+                      className="text-sm font-medium text-water-700 hover:text-water-900"
+                    >
+                      Clear filters
+                    </button>
+                  )}
                 </div>
               </motion.div>
             )}
@@ -198,7 +204,7 @@ export function ProductsPage() {
               <Filter className="w-16 h-16 text-gray-300 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
               <p className="text-gray-600 mb-4">Try adjusting your filters or search terms.</p>
-              <Button variant="secondary" onClick={() => { setSearchTerm(''); setSelectedCategory(''); void refetch(); }}>
+              <Button variant="secondary" onClick={() => { setSearchTerm(''); setSelectedCategory(''); setInStockOnly(false); setPage(1); void refetch(); }}>
                 Clear Filters
               </Button>
             </motion.div>
@@ -264,7 +270,7 @@ export function ProductsPage() {
                     variant="secondary"
                     size="sm"
                     disabled={data.pagination.page === 1}
-                    onClick={() => setSearchParams({ ...Object.fromEntries(searchParams), page: String(data.pagination.page - 1) })}
+                    onClick={() => setPage(Math.max(1, data.pagination.page - 1))}
                   >
                     <ChevronLeft className="w-4 h-4" />
                     Previous
@@ -276,7 +282,7 @@ export function ProductsPage() {
                     variant="secondary"
                     size="sm"
                     disabled={data.pagination.page === data.pagination.totalPages}
-                    onClick={() => setSearchParams({ ...Object.fromEntries(searchParams), page: String(data.pagination.page + 1) })}
+                    onClick={() => setPage(data.pagination.page + 1)}
                   >
                     Next
                     <ChevronRight className="w-4 h-4" />

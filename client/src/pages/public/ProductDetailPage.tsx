@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useParams } from 'react-router-dom';
-import { ChevronRight, Check, Truck, Shield, Star, RotateCcw, MessageSquare, MapPin } from 'lucide-react';
+import { ChevronRight, Check, Truck, Shield, Star, RotateCcw, MessageSquare } from 'lucide-react';
 import { fadeInUp } from '../../utils/animations';
 import { useProduct } from '../../hooks/useApi';
 import { formatPrice } from '../../utils/helpers';
@@ -130,7 +130,7 @@ export function ProductDetailPage() {
                   </span>
                   {product.contactForPrice && (
                     <Button variant="secondary" size="sm" asChild>
-                      <Link to="/contact?subject=Price+Inquiry:+{product.name}">Request Quote</Link>
+                      <Link to={`/contact?subject=${encodeURIComponent(`Price Inquiry: ${product.name}`)}`}>Request Quote</Link>
                     </Button>
                   )}
                 </div>
@@ -197,9 +197,9 @@ export function ProductDetailPage() {
                       </Link>
                     </Button>
                     <Button variant="secondary" size="lg" className="w-full sm:w-auto" asChild>
-                      <Link to="/contact">
-                        <MapPin className="w-5 h-5" />
-                        Find Dealer
+                      <Link to={`/products/compare?products=${product.slug}`}>
+                        <Star className="w-5 h-5" />
+                        Compare Models
                       </Link>
                     </Button>
                   </div>
@@ -209,17 +209,6 @@ export function ProductDetailPage() {
           </div>
         </div>
       </section>
-
-      {product.metaDescription && (
-        <section className="section bg-gray-50" aria-labelledby="specs-heading">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} variants={fadeInUp}>
-              <h2 id="specs-heading" className="font-display font-bold text-2xl text-gray-900 mb-6">Specifications & Details</h2>
-              <div className="prose prose-gray max-w-none" dangerouslySetInnerHTML={{ __html: product.metaDescription }} />
-            </motion.div>
-          </div>
-        </section>
-      )}
 
       <Lightbox
         isOpen={lightboxOpen}

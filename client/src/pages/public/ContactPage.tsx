@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -24,22 +25,33 @@ type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactPage() {
   const { settings } = useSettings();
+  const [searchParams] = useSearchParams();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const phone = settings.phone || '+91-XXXXXXXXXX';
-  const whatsapp = settings.whatsapp || '91XXXXXXXXXX';
+  const phone = settings.phone || '+91-9896007699';
+  const whatsapp = settings.whatsapp || '919896007699';
   const email = settings.email || 'info@kdkangenwater.com';
-  const address = settings.address || 'Your Address Here, City, State, PIN';
+  const address = settings.address || 'Badanpur, Narwana, Jind, Haryana';
 
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    defaultValues: {
+      subject: searchParams.get('subject') || (searchParams.get('demo') === 'true' ? 'Free Demo Request' : ''),
+    },
   });
+
+  useEffect(() => {
+    const subject = searchParams.get('subject');
+    if (subject) setValue('subject', subject);
+    else if (searchParams.get('demo') === 'true') setValue('subject', 'Free Demo Request');
+  }, [searchParams, setValue]);
 
   const onSubmit = async (data: ContactFormData) => {
     setIsSubmitting(true);
@@ -136,7 +148,7 @@ export function ContactPage() {
                 <h3 className="font-display font-semibold text-xl mb-3">Schedule a Free Demo</h3>
                 <p className="text-white/80 mb-4">Experience Kangen Water® firsthand. Our experts will visit your home or office for a complimentary demonstration.</p>
                 <Button variant="secondary" size="lg" asChild className="w-full sm:w-auto">
-                  <a href="/contact?demo=true">Book Free Demo</a>
+                  <Link to="/contact?demo=true">Book Free Demo</Link>
                 </Button>
               </div>
             </motion.div>
@@ -233,13 +245,14 @@ export function ContactPage() {
           >
             <h2 id="map-heading" className="font-display font-bold text-2xl text-gray-900 mb-6 text-center">Find Us</h2>
             <div className="aspect-video rounded-xl overflow-hidden bg-gray-200 max-w-4xl mx-auto">
-              <div className="w-full h-full flex items-center justify-center text-gray-500">
-                <div className="text-center p-8">
-                  <MapPin className="w-12 h-12 mx-auto mb-4 text-gray-300" />
-                  <p>Google Maps embed placeholder</p>
-                  <p className="text-sm">Add your location in Site Settings</p>
-                </div>
-              </div>
+              <iframe
+                title="K.D Kangen Water location"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
+                className="w-full h-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
             </div>
           </motion.div>
         </div>

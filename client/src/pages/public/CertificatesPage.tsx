@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Award, FileText, ImageIcon, ExternalLink, CheckCircle } from 'lucide-react';
 import { fadeInUp } from '../../utils/animations';
@@ -198,10 +199,9 @@ export function CertificatesPage() {
             <p className="text-white/80 mb-6 max-w-2xl mx-auto">
               Can't find the certification you're looking for? Contact us and we'll provide the documentation you need.
             </p>
-            <a href="/contact" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10 text-lg px-10 py-4 inline-flex items-center gap-2 rounded-lg font-medium transition-all duration-200">
+            <Link to="/contact" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10 text-lg px-10 py-4 inline-flex items-center gap-2 rounded-lg font-medium transition-all duration-200">
               Contact Us
-              <ExternalLink className="w-5 h-5" />
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

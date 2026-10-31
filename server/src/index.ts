@@ -2,15 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
 import { config } from './config/index.js';
 import { initializeDatabase } from './models/database.js';
 import routes from './routes/index.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 const app = express();
 
@@ -34,7 +29,7 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
 // Static file serving for uploads
-const uploadsPath = join(__dirname, '..', '..', config.upload.dir);
+const uploadsPath = config.upload.dir;
 app.use('/uploads', express.static(uploadsPath));
 
 // Health check

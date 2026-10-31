@@ -1,10 +1,23 @@
 import dotenv from 'dotenv';
-dotenv.config();
+import { fileURLToPath } from 'url';
+import { dirname, isAbsolute, resolve } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const serverDir = resolve(__dirname, '..', '..');
+const rootDir = resolve(serverDir, '..');
+
+dotenv.config({ path: resolve(rootDir, '.env') });
+dotenv.config({ path: resolve(serverDir, '.env') });
+
+function resolvePath(value: string | undefined, fallback: string) {
+  const target = value || fallback;
+  return isAbsolute(target) ? target : resolve(rootDir, target);
+}
 
 export const config = {
-  port: parseInt(process.env.PORT || '3001', 10),
+  port: parseInt(process.env.PORT || '3002', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
-  clientUrl: process.env.CLIENT_URL || 'http://localhost:5173',
+  clientUrl: process.env.CLIENT_URL || 'http://localhost:4173',
   jwt: {
     secret: process.env.JWT_SECRET || 'default-secret-change-me',
     expiresIn: process.env.JWT_EXPIRES_IN || '7d',
@@ -14,10 +27,10 @@ export const config = {
     password: process.env.ADMIN_PASSWORD || 'ChangeMe123!',
   },
   database: {
-    path: process.env.DATABASE_PATH || './data/kangen.db',
+    path: resolvePath(process.env.DATABASE_PATH, 'server/data/kangen.db'),
   },
   upload: {
-    dir: process.env.UPLOAD_DIR || './uploads',
+    dir: resolvePath(process.env.UPLOAD_DIR, 'server/uploads'),
     maxSize: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10),
   },
   cloudinary: {

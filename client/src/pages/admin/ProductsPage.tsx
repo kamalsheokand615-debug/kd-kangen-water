@@ -68,6 +68,8 @@ export function AdminProductsPage() {
             formDataObj.append(key, String(value));
           } else if (key === 'contactForPrice' || key === 'inStock') {
             formDataObj.append(key, String(value));
+          } else if (key === 'price') {
+            formDataObj.append(key, String(Math.round(Number(value) * 100)));
           } else {
             formDataObj.append(key, String(value));
           }

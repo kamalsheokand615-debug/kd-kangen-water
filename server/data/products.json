@@ -49,8 +49,7 @@
     "category": "Water Ionizers",
     "images": [
       "/image/levluck dx.png",
-      "/dx model.webp",
-      "/image/hero section /dx model.webp"
+      "/dx model.webp"
     ],
     "inStock": true,
     "displayOrder": 2,
@@ -79,7 +78,6 @@
     "contactForPrice": true,
     "category": "Water Ionizers",
     "images": [
-      "/ -Platinum-.jpg",
       "/-Platinum-.jpg"
     ],
     "inStock": true,
@@ -169,25 +167,5 @@
     "displayOrder": 6,
     "metaTitle": "Super 501 - Commercial Kangen Water Machine | K.D Kangen Water",
     "metaDescription": "Commercial-grade continuous flow ionizer with 12 plates. For high-volume business use. Contact for price."
-  },
-  {
-    "slug": "anespa-dx-cartridge",
-    "name": "Anespa DX Replacement Cartridge Set",
-    "description": "Dual cartridge replacement set for Anespa DX shower system. Includes ceramic cartridge and mineral cartridge.",
-    "features": [
-      "Ceramic cartridge (chlorine removal)",
-      "Mineral cartridge (hot spring minerals)",
-      "Set of 2 cartridges",
-      "Life: ~1 year for family of 4",
-      "Easy replacement"
-    ],
-    "price": null,
-    "contactForPrice": true,
-    "category": "Filters & Accessories",
-    "images": [],
-    "inStock": true,
-    "displayOrder": 9,
-    "metaTitle": "Anespa DX Replacement Cartridges | K.D Kangen Water",
-    "metaDescription": "Dual cartridge set for Anespa DX shower system. Contact for price."
   }
 ]

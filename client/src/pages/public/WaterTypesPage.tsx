@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Droplet, Sparkles, Leaf, Utensils, Zap, AlertTriangle } from 'lucide-react';
 import { fadeInUp, staggerContainer, staggerItem } from '../../utils/animations';
@@ -321,10 +322,10 @@ export function WaterTypesPage() {
               Consult your healthcare provider before making significant changes to your water consumption,
               especially if you have medical conditions or take medications.
             </p>
-            <a href="/contact" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10 text-lg px-10 py-4 inline-flex items-center gap-2 rounded-lg font-medium transition-all duration-200">
+            <Link to="/contact" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10 text-lg px-10 py-4 inline-flex items-center gap-2 rounded-lg font-medium transition-all duration-200">
               Schedule a Free Demo
               <Zap className="w-5 h-5" />
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

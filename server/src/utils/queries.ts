@@ -52,8 +52,15 @@ export function getAllProducts(options: {
     params.push(inStock ? 1 : 0);
   }
 
-  const allowedSortColumns = ['name', 'price', 'display_order', 'created_at'];
-  const sortColumn = allowedSortColumns.includes(sortBy) ? sortBy : 'display_order';
+  const sortColumnMap: Record<string, string> = {
+    displayOrder: 'display_order',
+    display_order: 'display_order',
+    name: 'name',
+    price: 'price',
+    createdAt: 'created_at',
+    created_at: 'created_at',
+  };
+  const sortColumn = sortColumnMap[sortBy] ?? 'display_order';
   const order = sortOrder === 'desc' ? 'DESC' : 'ASC';
 
   const totalResult = get(`SELECT COUNT(*) as count FROM products ${where}`, params) as { count: number } | undefined;

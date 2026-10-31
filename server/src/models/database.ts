@@ -7,7 +7,7 @@ import { config } from '../config/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const dbPath = join(__dirname, '..', config.database.path);
+const dbPath = config.database.path;
 const dbDir = dirname(dbPath);
 
 if (!existsSync(dbDir)) {
@@ -26,6 +26,7 @@ export async function initializeDatabase() {
   if (existsSync(dbPath)) {
     const fileBuffer = readFileSync(dbPath);
     sqlDb = new SQL.Database(fileBuffer);
+    createTables(sqlDb);
   } else {
     sqlDb = new SQL.Database();
     createTables(sqlDb);
@@ -234,27 +235,6 @@ export function getDb() {
   return db;
 }
 
-function rowToObject(stmt: any): Record<string, unknown> | null {
-  if (!stmt.columns || stmt.values.length === 0) return null;
-  const row = stmt.values[0];
-  const obj: Record<string, unknown> = {};
-  stmt.columns.forEach((col: string, i: number) => {
-    obj[col] = row[i];
-  });
-  return obj;
-}
-
-function rowsToObjects(stmt: any): Record<string, unknown>[] {
-  if (!stmt.columns || stmt.values.length === 0) return [];
-  return stmt.values.map((row: any[]) => {
-    const obj: Record<string, unknown> = {};
-    stmt.columns.forEach((col: string, i: number) => {
-      obj[col] = row[i];
-    });
-    return obj;
-  });
-}
-
 export function run(sql: string, params: unknown[] = []) {
   const stmt = getDb().prepare(sql);
   stmt.bind(params);
@@ -267,8 +247,8 @@ export function run(sql: string, params: unknown[] = []) {
 export function get(sql: string, params: unknown[] = []) {
   const stmt = getDb().prepare(sql);
   stmt.bind(params);
-  stmt.step();
-  const result = rowToObject(stmt);
+  const hasRow = stmt.step();
+  const result = hasRow ? stmt.getAsObject() : null;
   stmt.free();
   return result;
 }

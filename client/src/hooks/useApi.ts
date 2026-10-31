@@ -17,10 +17,12 @@ export function useProducts(params: {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const paramsKey = JSON.stringify(params);
+
   const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await api.get<PaginatedResponse<Product>>('/products', { params });
+      const response = await api.get<PaginatedResponse<Product>>('/products', { params: JSON.parse(paramsKey) as typeof params });
       setData(response.data);
       setError(null);
     } catch (err) {
@@ -28,7 +30,7 @@ export function useProducts(params: {
     } finally {
       setLoading(false);
     }
-  }, [params]);
+  }, [paramsKey]);
 
   useEffect(() => {
     void fetchProducts();
@@ -184,10 +186,12 @@ export function useAdminProducts(params: {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const paramsKey = JSON.stringify(params);
+
   const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await api.get<PaginatedResponse<Product>>('/admin/products', { params });
+      const response = await api.get<PaginatedResponse<Product>>('/admin/products', { params: JSON.parse(paramsKey) as typeof params });
       setData(response.data);
       setError(null);
     } catch (err) {
@@ -195,7 +199,7 @@ export function useAdminProducts(params: {
     } finally {
       setLoading(false);
     }
-  }, [params]);
+  }, [paramsKey]);
 
   useEffect(() => {
     void fetchProducts();
@@ -338,10 +342,12 @@ export function useAdminContactMessages(params: {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const paramsKey = JSON.stringify(params);
+
   const fetchMessages = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await api.get<PaginatedResponse<ContactMessage>>('/admin/contact-messages', { params });
+      const response = await api.get<PaginatedResponse<ContactMessage>>('/admin/contact-messages', { params: JSON.parse(paramsKey) as typeof params });
       setData(response.data);
       setError(null);
     } catch (err) {
@@ -349,7 +355,7 @@ export function useAdminContactMessages(params: {
     } finally {
       setLoading(false);
     }
-  }, [params]);
+  }, [paramsKey]);
 
   useEffect(() => {
     void fetchMessages();

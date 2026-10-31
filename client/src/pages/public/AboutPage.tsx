@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Building2, MapPin, Factory, Globe, Users, Award, Leaf, Zap, Shield, BookOpen } from 'lucide-react';
 import { fadeInUp, staggerItem } from '../../utils/animations';
@@ -165,12 +166,12 @@ export function AboutPage() {
               As an authorized independent distributor, we provide genuine Enagic products with full warranty and expert support across India.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="/products" className="btn-primary text-lg px-10 py-4">
+              <Link to="/products" className="btn-primary text-lg px-10 py-4">
                 Explore Products
-              </a>
-              <a href="/contact" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10 text-lg px-10 py-4 inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200">
+              </Link>
+              <Link to="/contact" className="btn bg-transparent border-2 border-white text-white hover:bg-white/10 text-lg px-10 py-4 inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-all duration-200">
                 Contact Us
-              </a>
+              </Link>
             </div>
           </motion.div>
         </div>

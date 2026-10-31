@@ -1,10 +1,11 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { PublicLayout, AdminLayout } from './components/layout/Layout';
-import { ProtectedRoute } from './components/layout/ProtectedRoute';
+import { ProtectedRoute, PublicOnlyRoute } from './components/layout/ProtectedRoute';
 import { HomePage } from './pages/public/HomePage';
 import { AboutPage } from './pages/public/AboutPage';
 import { WaterTypesPage } from './pages/public/WaterTypesPage';
 import { ProductsPage } from './pages/public/ProductsPage';
+import { ComparePage } from './pages/public/ComparePage';
 import { ProductDetailPage } from './pages/public/ProductDetailPage';
 import { CertificatesPage } from './pages/public/CertificatesPage';
 import { ContactPage } from './pages/public/ContactPage';
@@ -29,13 +30,15 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/water-types" element={<WaterTypesPage />} />
         <Route path="/products" element={<ProductsPage />} />
+        <Route path="/products/compare" element={<ComparePage />} />
         <Route path="/products/:slug" element={<ProductDetailPage />} />
         <Route path="/certificates" element={<CertificatesPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/warranty" element={<WarrantyPage />} />
-        <Route path="/admin/login" element={<LoginPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
+
+      <Route path="/admin/login" element={<PublicOnlyRoute><LoginPage /></PublicOnlyRoute>} />
 
       <Route element={<AdminLayout />}>
         <Route element={<ProtectedRoute />}>
@@ -50,8 +53,6 @@ function App() {
           <Route path="/admin/settings" element={<AdminSettingsPage />} />
         </Route>
       </Route>
-
-      <Route path="/admin" element={<Navigate to="/admin/login" replace />} />
     </Routes>
   );
 }

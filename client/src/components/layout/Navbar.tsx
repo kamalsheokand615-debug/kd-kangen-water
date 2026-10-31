@@ -24,7 +24,7 @@ export function Navbar() {
   }, [location.pathname]);
 
   const siteName = settings.site_name || 'K.D Kangen Water';
-  const whatsapp = settings.whatsapp || '91XXXXXXXXXX';
+  const whatsapp = settings.whatsapp || '919896007699';
 
   return (
     <>
