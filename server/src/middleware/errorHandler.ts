@@ -12,7 +12,9 @@ export class AppError extends Error {
   }
 }
 
-export function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
+export function errorHandler(err: Error, req: Request, res: Response, _next: NextFunction) {
+  void req;
+  void _next;
   console.error('Error:', err);
 
   if (err instanceof AppError) {

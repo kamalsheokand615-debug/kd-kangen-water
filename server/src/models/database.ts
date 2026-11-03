@@ -241,32 +241,34 @@ export function run(sql: string, params: unknown[] = []) {
   stmt.run();
   stmt.free();
   saveDatabase(getDb());
-  return { lastInsertRowid: getDb().exec('SELECT last_insert_rowid()')[0].values[0][0] };
+  const lastInsertRowidResult = getDb().exec('SELECT last_insert_rowid()') as Array<{ values: unknown[][] }>;
+  const lastInsertRowid = lastInsertRowidResult[0]?.values[0]?.[0] ?? 0;
+  return { lastInsertRowid: lastInsertRowid as number };
 }
 
-export function get(sql: string, params: unknown[] = []) {
+export function get<T = Record<string, unknown>>(sql: string, params: unknown[] = []): T | null {
   const stmt = getDb().prepare(sql);
   stmt.bind(params);
   const hasRow = stmt.step();
   const result = hasRow ? stmt.getAsObject() : null;
   stmt.free();
-  return result;
+  return result as unknown as T | null;
 }
 
-export function all(sql: string, params: unknown[] = []) {
+export function all<T = Record<string, unknown>>(sql: string, params: unknown[] = []): T[] {
   const stmt = getDb().prepare(sql);
   stmt.bind(params);
-  const results: Record<string, unknown>[] = [];
+  const results: T[] = [];
   while (stmt.step()) {
-    const row = stmt.getAsObject();
+    const row = stmt.getAsObject() as unknown as T;
     results.push(row);
   }
   stmt.free();
   return results;
 }
 
-export function exec(sql: string) {
-  return getDb().exec(sql);
+export function exec<T = unknown[]>(sql: string): T[] {
+  return getDb().exec(sql) as T[];
 }
 
 export function save() {

@@ -93,10 +93,17 @@ export const faqSchema = z.object({
 // Contact Message schema
 export const contactSchema = z.object({
   name: z.string().min(1, 'Name is required').max(100),
-  email: z.string().email('Invalid email address'),
-  phone: z.string().max(20).optional(),
+  email: z.string().email('Invalid email address').optional().or(z.literal('')),
+  phone: z.string().max(20).optional().or(z.literal('')),
   subject: z.string().max(200).optional(),
   message: z.string().min(1, 'Message is required').max(5000),
+}).refine((data) => {
+  const email = typeof data.email === 'string' ? data.email.trim() : '';
+  const phone = typeof data.phone === 'string' ? data.phone.trim() : '';
+  return email !== '' || phone !== '';
+}, {
+  message: 'Either email or phone number is required',
+  path: ['email'],
 });
 
 // Site Settings schema

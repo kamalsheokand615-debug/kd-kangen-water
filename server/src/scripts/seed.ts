@@ -236,7 +236,7 @@ async function seed() {
   } | null;
 
   if (heroData) {
-    const hero = get('SELECT id FROM hero_content WHERE is_active = 1 LIMIT 1');
+    const hero = get<{ id: number }>('SELECT id FROM hero_content WHERE is_active = 1 LIMIT 1');
     if (hero) {
       run(`
         UPDATE hero_content SET 
@@ -245,7 +245,7 @@ async function seed() {
         WHERE id = ?
       `, [
         heroData.headline, heroData.subheadline, heroData.ctaText, heroData.ctaLink,
-        heroData.backgroundImageUrl, heroData.backgroundVideoUrl, heroData.isActive ? 1 : 0, (hero as any).id
+        heroData.backgroundImageUrl, heroData.backgroundVideoUrl, heroData.isActive ? 1 : 0, hero.id
       ]);
       save();
       console.log('Updated hero content');

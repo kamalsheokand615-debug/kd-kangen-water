@@ -7,27 +7,34 @@ export interface AuthRequest extends Request {
 }
 
 export function authMiddleware(req: AuthRequest, res: Response, next: NextFunction) {
-  const token = req.cookies?.token;
+  const token = typeof req.cookies?.token === 'string' ? req.cookies.token : undefined;
 
   if (!token) {
     return res.status(401).json({ error: 'Authentication required' });
   }
 
   try {
-    const decoded = jwt.verify(token, config.jwt.secret) as { id: number; email: string; role: string };
+    const decodedPayload = jwt.verify(token, config.jwt.secret) as unknown;
+    if (typeof decodedPayload !== 'object' || decodedPayload === null) {
+      return res.status(401).json({ error: 'Invalid or expired token' });
+    }
+
+    const decoded = decodedPayload as { id: number; email: string; role: string };
     req.user = decoded;
     next();
-  } catch (error) {
+  } catch {
     return res.status(401).json({ error: 'Invalid or expired token' });
   }
 }
 
 export function optionalAuth(req: AuthRequest, res: Response, next: NextFunction) {
-  const token = req.cookies?.token;
+  const token = typeof req.cookies?.token === 'string' ? req.cookies.token : undefined;
   if (token) {
     try {
-      const decoded = jwt.verify(token, config.jwt.secret) as { id: number; email: string; role: string };
-      req.user = decoded;
+      const decodedPayload = jwt.verify(token, config.jwt.secret) as unknown;
+      if (typeof decodedPayload === 'object' && decodedPayload !== null) {
+        req.user = decodedPayload as { id: number; email: string; role: string };
+      }
     } catch {
       // Ignore invalid token
     }

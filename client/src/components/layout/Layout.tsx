@@ -6,6 +6,7 @@ import { Footer } from './Footer';
 import { ScrollToTop } from './ScrollToTop';
 import { useAuth } from '../../context/AuthContext';
 import { cn } from '../../utils/helpers';
+import { ChatWidget } from './ChatWidget';
 
 export function PublicLayout() {
   return (
@@ -16,6 +17,7 @@ export function PublicLayout() {
         <Outlet />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }

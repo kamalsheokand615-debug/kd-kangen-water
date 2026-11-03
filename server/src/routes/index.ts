@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { validate } from '../middleware/validation.js';
-import { authMiddleware, AuthRequest } from '../middleware/auth.js';
-import { uploadSingle, uploadArray, uploadFields } from '../middleware/upload.js';
-import { loginLimiter, apiLimiter, contactLimiter } from '../middleware/rateLimiter.js';
+import { authMiddleware } from '../middleware/auth.js';
+import { uploadSingle, uploadArray } from '../middleware/upload.js';
+import { loginLimiter, apiLimiter } from '../middleware/rateLimiter.js';
 import * as ctrl from '../controllers/index.js';
-import { loginSchema, changePasswordSchema, contactSchema } from '../utils/validationSchemas.js';
+import { loginSchema, changePasswordSchema } from '../utils/validationSchemas.js';
 
 const router = Router();
 
@@ -21,7 +21,7 @@ router.get('/company-content', ctrl.getPublicCompanyContent);
 router.get('/faqs', ctrl.getPublicFaqs);
 router.get('/hero', ctrl.getPublicHero);
 router.get('/settings', ctrl.getPublicSettings);
-router.post('/contact', contactLimiter, validate(contactSchema), ctrl.postContactMessage);
+router.post('/chat', ctrl.postChat);
 
 // Auth Routes
 router.post('/auth/login', loginLimiter, validate(loginSchema), ctrl.login);

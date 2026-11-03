@@ -1,21 +1,21 @@
 declare module 'sql.js' {
   export interface Database {
-    run(sql: string, params?: any[]): any;
-    exec(sql: string): any[];
+    run(sql: string, params?: unknown[]): unknown;
+    exec(sql: string): Array<{ columns: string[]; values: unknown[][] }>;
     prepare(sql: string): Statement;
     export(): Uint8Array;
     close(): void;
   }
 
   export interface Statement {
-    bind(params: any[]): this;
+    bind(params: unknown[]): this;
     step(): boolean;
-    getAsObject(): Record<string, any>;
-    get(): any[];
+    getAsObject(): Record<string, unknown>;
+    get(): unknown[];
     free(): void;
-    run(params?: any[]): any;
+    run(params?: unknown[]): unknown;
     columns: string[];
-    values: any[][];
+    values: unknown[][];
   }
 
   export interface SqlJsStatic {

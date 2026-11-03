@@ -1,16 +1,33 @@
 import { run, get, all, save } from '../models/database.js';
 
+type SettingRow = { setting_key: string; setting_value: string };
+type ProductRow = Record<string, unknown> & {
+  features?: string | null;
+  images?: string | null;
+  price?: number | null;
+  contact_for_price?: number | boolean;
+  in_stock?: number | boolean;
+  display_order?: number;
+  uses?: string | null;
+  is_active?: number | boolean;
+  count?: number;
+};
+type WaterTypeRow = Record<string, unknown> & {
+  uses?: string | null;
+  is_active?: number | boolean;
+};
+
 function mapRow(row: Record<string, unknown>): Record<string, unknown> {
   return row;
 }
 
 export function getSetting(key: string): string | null {
-  const row = get('SELECT setting_value FROM site_settings WHERE setting_key = ?', [key]) as { setting_value: string } | undefined;
+  const row = get<SettingRow>('SELECT setting_value FROM site_settings WHERE setting_key = ?', [key]);
   return row?.setting_value ?? null;
 }
 
 export function getAllSettings(): Record<string, string> {
-  const rows = all('SELECT setting_key, setting_value FROM site_settings') as { setting_key: string; setting_value: string }[];
+  const rows = all<SettingRow>('SELECT setting_key, setting_value FROM site_settings');
   return Object.fromEntries(rows.map(r => [r.setting_key, r.setting_value]));
 }
 
@@ -20,7 +37,7 @@ export function setSetting(key: string, value: string) {
 }
 
 export function getHeroContent() {
-  const row = get('SELECT * FROM hero_content WHERE is_active = 1 ORDER BY updated_at DESC LIMIT 1');
+  const row = get<Record<string, unknown>>('SELECT * FROM hero_content WHERE is_active = 1 ORDER BY updated_at DESC LIMIT 1');
   return row ? mapRow(row) : null;
 }
 
@@ -63,15 +80,15 @@ export function getAllProducts(options: {
   const sortColumn = sortColumnMap[sortBy] ?? 'display_order';
   const order = sortOrder === 'desc' ? 'DESC' : 'ASC';
 
-  const totalResult = get(`SELECT COUNT(*) as count FROM products ${where}`, params) as { count: number } | undefined;
+  const totalResult = get<ProductRow>(`SELECT COUNT(*) as count FROM products ${where}`, params);
   const total = totalResult?.count ?? 0;
-  const products = all(`SELECT * FROM products ${where} ORDER BY ${sortColumn} ${order} LIMIT ? OFFSET ?`, [...params, limit, offset]);
+  const products = all<ProductRow>(`SELECT * FROM products ${where} ORDER BY ${sortColumn} ${order} LIMIT ? OFFSET ?`, [...params, limit, offset]);
 
   return {
     data: (products).map(p => ({
       ...mapRow(p),
-      features: p.features ? JSON.parse(p.features as string) : [],
-      images: p.images ? JSON.parse(p.images as string) : [],
+      features: p.features ? (JSON.parse(p.features) as string[]) : [],
+      images: p.images ? (JSON.parse(p.images) as string[]) : [],
       price: p.price !== null ? p.price : null,
       contactForPrice: Boolean(p.contact_for_price),
     })),
@@ -85,26 +102,26 @@ export function getAllProducts(options: {
 }
 
 export function getProductBySlug(slug: string) {
-  const product = get('SELECT * FROM products WHERE slug = ?', [slug]);
+  const product = get<ProductRow>('SELECT * FROM products WHERE slug = ?', [slug]);
   if (!product) return null;
   const p = mapRow(product);
   return {
     ...p,
-    features: p.features ? JSON.parse(p.features as string) : [],
-    images: p.images ? JSON.parse(p.images as string) : [],
+    features: typeof p.features === 'string' ? (JSON.parse(p.features) as string[]) : [],
+    images: typeof p.images === 'string' ? (JSON.parse(p.images) as string[]) : [],
     price: p.price !== null ? p.price : null,
     contactForPrice: Boolean(p.contact_for_price),
   };
 }
 
 export function getProductById(id: number) {
-  const product = get('SELECT * FROM products WHERE id = ?', [id]);
+  const product = get<ProductRow>('SELECT * FROM products WHERE id = ?', [id]);
   if (!product) return null;
   const p = mapRow(product);
   return {
     ...p,
-    features: p.features ? JSON.parse(p.features as string) : [],
-    images: p.images ? JSON.parse(p.images as string) : [],
+    features: typeof p.features === 'string' ? (JSON.parse(p.features) as string[]) : [],
+    images: typeof p.images === 'string' ? (JSON.parse(p.images) as string[]) : [],
     price: p.price !== null ? p.price : null,
     contactForPrice: Boolean(p.contact_for_price),
   };
@@ -142,7 +159,7 @@ export function createProduct(data: {
     data.metaDescription ?? null
   ]);
   save();
-  return getProductById(result.lastInsertRowid as number);
+  return getProductById(Number(result.lastInsertRowid));
 }
 
 export function updateProduct(id: number, data: Partial<{
@@ -195,16 +212,16 @@ export function getAllWaterTypes(activeOnly = true) {
   let query = 'SELECT * FROM water_types';
   if (activeOnly) query += ' WHERE is_active = 1';
   query += ' ORDER BY display_order, id';
-  return (all(query)).map(w => ({
+  return all<WaterTypeRow>(query).map(w => ({
     ...mapRow(w),
-    uses: w.uses ? JSON.parse(w.uses as string) : [],
+    uses: typeof w.uses === 'string' ? (JSON.parse(w.uses) as string[]) : [],
   }));
 }
 
 export function getWaterTypeById(id: number) {
-  const w = get('SELECT * FROM water_types WHERE id = ?', [id]);
+  const w = get<WaterTypeRow>('SELECT * FROM water_types WHERE id = ?', [id]);
   if (!w) return null;
-  return { ...mapRow(w), uses: w.uses ? JSON.parse(w.uses as string) : [] };
+  return { ...mapRow(w), uses: typeof w.uses === 'string' ? (JSON.parse(w.uses) as string[]) : [] };
 }
 
 export function createWaterType(data: {
@@ -231,7 +248,7 @@ export function createWaterType(data: {
     data.isActive ? 1 : 0
   ]);
   save();
-  return getWaterTypeById(result.lastInsertRowid as number);
+  return getWaterTypeById(Number(result.lastInsertRowid));
 }
 
 export function updateWaterType(id: number, data: Partial<{
@@ -280,11 +297,11 @@ export function getAllCertificates(activeOnly = true) {
   let query = 'SELECT * FROM certificates';
   if (activeOnly) query += ' WHERE is_active = 1';
   query += ' ORDER BY display_order, year DESC';
-  return all(query).map(mapRow);
+  return all<Record<string, unknown>>(query).map(mapRow);
 }
 
 export function getCertificateById(id: number) {
-  const cert = get('SELECT * FROM certificates WHERE id = ?', [id]);
+  const cert = get<Record<string, unknown>>('SELECT * FROM certificates WHERE id = ?', [id]);
   return cert ? mapRow(cert) : null;
 }
 
@@ -312,7 +329,7 @@ export function createCertificate(data: {
     data.isActive ? 1 : 0
   ]);
   save();
-  return getCertificateById(result.lastInsertRowid as number);
+  return getCertificateById(Number(result.lastInsertRowid));
 }
 
 export function updateCertificate(id: number, data: Partial<{
@@ -359,11 +376,11 @@ export function getAllHistory(activeOnly = true) {
   let query = 'SELECT * FROM history_timeline';
   if (activeOnly) query += ' WHERE is_active = 1';
   query += ' ORDER BY year DESC, display_order';
-  return all(query).map(mapRow);
+  return all<Record<string, unknown>>(query).map(mapRow);
 }
 
 export function getHistoryById(id: number) {
-  const h = get('SELECT * FROM history_timeline WHERE id = ?', [id]);
+  const h = get<Record<string, unknown>>('SELECT * FROM history_timeline WHERE id = ?', [id]);
   return h ? mapRow(h) : null;
 }
 
@@ -387,7 +404,7 @@ export function createHistory(data: {
     data.isActive ? 1 : 0
   ]);
   save();
-  return getHistoryById(result.lastInsertRowid as number);
+  return getHistoryById(Number(result.lastInsertRowid));
 }
 
 export function updateHistory(id: number, data: Partial<{
@@ -429,12 +446,12 @@ export function deleteHistory(id: number) {
 }
 
 export function getCompanyContent(key: string) {
-  const row = get('SELECT * FROM company_content WHERE section_key = ?', [key]);
+  const row = get<Record<string, unknown>>('SELECT * FROM company_content WHERE section_key = ?', [key]);
   return row ? mapRow(row) : null;
 }
 
 export function getAllCompanyContent() {
-  return all('SELECT * FROM company_content').map(mapRow);
+  return all<Record<string, unknown>>('SELECT * FROM company_content').map(mapRow);
 }
 
 export function upsertCompanyContent(data: {
@@ -464,11 +481,11 @@ export function getAllFaqs(activeOnly = true) {
   let query = 'SELECT * FROM faqs';
   if (activeOnly) query += ' WHERE is_active = 1';
   query += ' ORDER BY display_order, id';
-  return all(query).map(mapRow);
+  return all<Record<string, unknown>>(query).map(mapRow);
 }
 
 export function getFaqById(id: number) {
-  const row = get('SELECT * FROM faqs WHERE id = ?', [id]);
+  const row = get<Record<string, unknown>>('SELECT * FROM faqs WHERE id = ?', [id]);
   return row ? mapRow(row) : null;
 }
 
@@ -484,7 +501,7 @@ export function createFaq(data: {
     VALUES (?, ?, ?, ?, ?)
   `, [data.question, data.answer, data.category ?? null, data.displayOrder ?? 0, data.isActive ? 1 : 0]);
   save();
-  return getFaqById(result.lastInsertRowid as number);
+  return getFaqById(Number(result.lastInsertRowid));
 }
 
 export function updateFaq(id: number, data: Partial<{
@@ -535,9 +552,9 @@ export function getAllContactMessages(options: { page?: number; limit?: number; 
     where += ' AND is_read = 0';
   }
 
-  const totalResult = get(`SELECT COUNT(*) as count FROM contact_messages ${where}`, params) as { count: number } | undefined;
+  const totalResult = get<{ count: number }>(`SELECT COUNT(*) as count FROM contact_messages ${where}`, params);
   const total = totalResult?.count ?? 0;
-  const messages = all(`SELECT * FROM contact_messages ${where} ORDER BY created_at DESC LIMIT ? OFFSET ?`, [...params, limit, offset]);
+  const messages = all<Record<string, unknown>>(`SELECT * FROM contact_messages ${where} ORDER BY created_at DESC LIMIT ? OFFSET ?`, [...params, limit, offset]);
 
   return {
     data: messages.map(mapRow),
@@ -546,7 +563,7 @@ export function getAllContactMessages(options: { page?: number; limit?: number; 
 }
 
 export function getContactMessageById(id: number) {
-  const row = get('SELECT * FROM contact_messages WHERE id = ?', [id]);
+  const row = get<Record<string, unknown>>('SELECT * FROM contact_messages WHERE id = ?', [id]);
   return row ? mapRow(row) : null;
 }
 
@@ -575,6 +592,6 @@ export function deleteContactMessage(id: number) {
 }
 
 export function getUnreadContactCount() {
-  const row = get('SELECT COUNT(*) as count FROM contact_messages WHERE is_read = 0') as { count: number } | undefined;
+  const row = get<{ count: number }>('SELECT COUNT(*) as count FROM contact_messages WHERE is_read = 0');
   return row ?? { count: 0 };
 }
