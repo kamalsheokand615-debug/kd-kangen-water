@@ -153,6 +153,18 @@ async function seed() {
       ]);
       save();
       console.log(`Seeded certificate: ${c.title}`);
+    } else {
+      run(`
+        UPDATE certificates
+        SET issuing_body = ?, year = ?, description = ?, file_url = ?, file_type = ?, display_order = ?, is_active = ?, updated_at = CURRENT_TIMESTAMP
+        WHERE title = ?
+      `, [
+        c.issuingBody, c.year, c.description,
+        c.fileUrl, c.fileType, c.displayOrder, c.isActive ? 1 : 0,
+        c.title
+      ]);
+      save();
+      console.log(`Updated certificate: ${c.title}`);
     }
   }
 

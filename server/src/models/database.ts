@@ -92,21 +92,24 @@ function createTables(sqlDb: Database) {
     )
   `);
 
-  sqlDb.exec(`
-    CREATE TABLE IF NOT EXISTS certificates (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      title TEXT NOT NULL,
-      issuing_body TEXT,
-      year INTEGER,
-      description TEXT,
-      file_url TEXT,
-      file_type TEXT DEFAULT 'image',
-      display_order INTEGER DEFAULT 0,
-      is_active BOOLEAN DEFAULT 1,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
+sqlDb.exec(`
+      CREATE TABLE IF NOT EXISTS certificates (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        issuing_body TEXT,
+        year INTEGER,
+        description TEXT,
+        file_url TEXT,
+        file_type TEXT DEFAULT 'image',
+        category TEXT DEFAULT 'quality',
+        certificate_number TEXT,
+        valid_date TEXT,
+        display_order INTEGER DEFAULT 0,
+        is_active BOOLEAN DEFAULT 1,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+        updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+      )
+    `);
 
   sqlDb.exec(`
     CREATE TABLE IF NOT EXISTS history_timeline (

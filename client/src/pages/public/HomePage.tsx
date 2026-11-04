@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Droplet, Award, Shield, Truck, Star, Zap, Leaf } from 'lucide-react';
 import { fadeInUp, staggerContainer, staggerItem, waveAnimation } from '../../utils/animations';
 import { useHero } from '../../hooks/useHero';
-import WaterTypesSection from '../../components/WaterTypesSection';
 
 const features = [
   { icon: Droplet, title: '7 Types of Water', desc: 'From pH 2.5 to 11.5 for every need', link: '/water-types' },
@@ -236,7 +235,6 @@ export function HomePage() {
           </div>
         </div>
       </section>
-    <WaterTypesSection />
     </div>
   );
 }

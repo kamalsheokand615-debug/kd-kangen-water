@@ -38,6 +38,9 @@ export interface Certificate {
   description: string | null;
   fileUrl: string | null;
   fileType: 'image' | 'pdf';
+  category: string | null;
+  certificateNumber: string | null;
+  validDate: string | null;
   displayOrder: number;
   isActive: boolean;
   createdAt: string;

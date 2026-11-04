@@ -312,12 +312,15 @@ export function createCertificate(data: {
   description?: string;
   fileUrl?: string;
   fileType?: string;
+  category?: string;
+  certificateNumber?: string;
+  validDate?: string;
   displayOrder?: number;
   isActive?: boolean;
 }) {
   const result = run(`
-    INSERT INTO certificates (title, issuing_body, year, description, file_url, file_type, display_order, is_active)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO certificates (title, issuing_body, year, description, file_url, file_type, category, certificate_number, valid_date, display_order, is_active)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `, [
     data.title,
     data.issuingBody ?? null,
@@ -325,6 +328,9 @@ export function createCertificate(data: {
     data.description ?? null,
     data.fileUrl ?? null,
     data.fileType ?? 'image',
+    data.category ?? 'quality',
+    data.certificateNumber ?? null,
+    data.validDate ?? null,
     data.displayOrder ?? 0,
     data.isActive ? 1 : 0
   ]);
@@ -339,6 +345,9 @@ export function updateCertificate(id: number, data: Partial<{
   description: string;
   fileUrl: string;
   fileType: string;
+  category: string;
+  certificateNumber: string;
+  validDate: string;
   displayOrder: number;
   isActive: boolean;
 }>) {

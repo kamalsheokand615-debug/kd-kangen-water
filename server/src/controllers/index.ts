@@ -154,7 +154,7 @@ export async function postChat(req: Request, res: Response, next: NextFunction) 
       const products = result.data as Array<Record<string, unknown>>;
       const found = products.find((p) => message.includes(String(p.name == null ? '' : p.name as string).toLowerCase()));
       if (found) {
-        answer = `${found.name ?? ''}: ${found.description ?? ''}`.trim();
+        answer = `${String(found.name == null ? '' : found.name as string)}: ${String(found.description == null ? '' : found.description as string)}`.trim();
       }
     }
     if (!answer) {
@@ -444,6 +444,9 @@ export async function adminCreateCertificate(req: AuthRequest, res: Response, ne
       description: typeof body.description === 'string' ? body.description : undefined,
       fileUrl: fileUrl ?? undefined,
       fileType,
+      category: typeof body.category === 'string' ? body.category : undefined,
+      certificateNumber: typeof body.certificateNumber === 'string' ? body.certificateNumber : undefined,
+      validDate: typeof body.validDate === 'string' ? body.validDate : undefined,
       displayOrder: typeof body.displayOrder === 'string' || typeof body.displayOrder === 'number' ? Number(body.displayOrder) || 0 : 0,
       isActive: body.isActive !== 'false' && body.isActive !== false,
     });
@@ -475,6 +478,9 @@ export async function adminUpdateCertificate(req: AuthRequest, res: Response, ne
       description: typeof body.description === 'string' ? body.description : undefined,
       fileUrl,
       fileType,
+      category: typeof body.category === 'string' ? body.category : undefined,
+      certificateNumber: typeof body.certificateNumber === 'string' ? body.certificateNumber : undefined,
+      validDate: typeof body.validDate === 'string' ? body.validDate : undefined,
       displayOrder: body.displayOrder === undefined ? undefined : typeof body.displayOrder === 'string' || typeof body.displayOrder === 'number' ? Number(body.displayOrder) : undefined,
       isActive: body.isActive === undefined ? undefined : body.isActive !== 'false' && body.isActive !== false,
     });
