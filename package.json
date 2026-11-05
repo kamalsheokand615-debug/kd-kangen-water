@@ -4,6 +4,7 @@
   "description": "K.D Kangen Water - Authorized Enagic Distributor Website",
   "private": true,
   "scripts": {
+    "postinstall": "npm install --prefix client && npm install --prefix server",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server": "npm run dev --prefix server",
     "client": "npm run dev --prefix client",
