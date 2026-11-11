@@ -1,10 +1,12 @@
 import { Router } from 'express';
 import { validate } from '../middleware/validation.js';
 import { authMiddleware } from '../middleware/auth.js';
-import { uploadSingle, uploadArray } from '../middleware/upload.js';
+import { uploadSingle } from '../middleware/upload.js';
 import { loginLimiter, apiLimiter } from '../middleware/rateLimiter.js';
 import * as ctrl from '../controllers/index.js';
 import { loginSchema, changePasswordSchema } from '../utils/validationSchemas.js';
+import productRoutes from './products.js';
+import contactRoutes from './contact.js';
 
 const router = Router();
 
@@ -12,8 +14,7 @@ const router = Router();
 router.use(apiLimiter);
 
 // Public Routes
-router.get('/products', ctrl.getPublicProducts);
-router.get('/products/:slug', ctrl.getPublicProduct);
+router.use('/products', productRoutes);
 router.get('/water-types', ctrl.getPublicWaterTypes);
 router.get('/certificates', ctrl.getPublicCertificates);
 router.get('/history', ctrl.getPublicHistory);
@@ -22,6 +23,9 @@ router.get('/faqs', ctrl.getPublicFaqs);
 router.get('/hero', ctrl.getPublicHero);
 router.get('/settings', ctrl.getPublicSettings);
 router.post('/chat', ctrl.postChat);
+
+// Contact routes
+router.use('/contact', contactRoutes);
 
 // Auth Routes
 router.post('/auth/login', loginLimiter, validate(loginSchema), ctrl.login);
@@ -34,13 +38,6 @@ router.use('/admin', authMiddleware);
 
 // Dashboard
 router.get('/admin/dashboard/stats', ctrl.adminGetDashboardStats);
-
-// Products
-router.get('/admin/products', ctrl.adminGetProducts);
-router.get('/admin/products/:id', ctrl.adminGetProduct);
-router.post('/admin/products', uploadArray('images', 10), ctrl.adminCreateProduct);
-router.put('/admin/products/:id', uploadArray('images', 10), ctrl.adminUpdateProduct);
-router.delete('/admin/products/:id', ctrl.adminDeleteProduct);
 
 // Water Types
 router.get('/admin/water-types', ctrl.adminGetWaterTypes);
@@ -69,11 +66,6 @@ router.get('/admin/faqs', ctrl.adminGetFaqs);
 router.post('/admin/faqs', ctrl.adminCreateFaq);
 router.put('/admin/faqs/:id', ctrl.adminUpdateFaq);
 router.delete('/admin/faqs/:id', ctrl.adminDeleteFaq);
-
-// Contact Messages
-router.get('/admin/contact-messages', ctrl.adminGetContactMessages);
-router.put('/admin/contact-messages/:id/read', ctrl.adminMarkContactRead);
-router.delete('/admin/contact-messages/:id', ctrl.adminDeleteContactMessage);
 
 // Settings
 router.get('/admin/settings', ctrl.adminGetSettings);

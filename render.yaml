@@ -17,3 +17,10 @@ services:
         sync: false
       - key: ADMIN_PASSWORD
         sync: false
+
+  - type: cron
+    name: kd-kangen-water-keepalive
+    env: node
+    schedule: "*/10 * * * *"
+    buildCommand: cd server && npm install
+    startCommand: curl -fsS https://kd-kangen-water.onrender.com/api/health || exit 1
