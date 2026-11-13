@@ -234,15 +234,6 @@ export function ProductsPage() {
                               </svg>
                             </div>
                           )}
-                          <div className="absolute top-3 left-3 flex gap-1">
-                            <span className="badge-primary">{product.category || 'General'}</span>
-                            {!product.inStock && <span className="badge bg-red-100 text-red-800">Out of Stock</span>}
-                          </div>
-                          <div className="absolute top-3 right-3">
-                            <span className="badge bg-white/90 text-gray-700 backdrop-blur-sm">
-                              {product.contactForPrice ? 'Contact for Price' : formatPrice(product.price, product.contactForPrice)}
-                            </span>
-                          </div>
                         </div>
                         <CardContent className="flex-1 flex flex-col p-4">
                           <h3 className="font-display font-semibold text-lg text-gray-900 mb-2 line-clamp-1">{product.name}</h3>
