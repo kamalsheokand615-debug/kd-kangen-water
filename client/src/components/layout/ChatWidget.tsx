@@ -51,6 +51,11 @@ export function ChatWidget() {
           >
             <div className="bg-gradient-to-r from-water-600 to-aqua-600 text-white p-4 flex items-center justify-between">
               <div className="flex items-center gap-2">
+                <img
+                  src="/image/hero%20section%20/wqa%20certificate.jfif"
+                  alt="WQA Certificate"
+                  className="w-6 h-6 rounded object-cover border border-white/30"
+                />
                 <MessageCircle className="w-5 h-5" />
                 <div>
                   <h3 className="font-semibold text-sm">KD Assistant</h3>
