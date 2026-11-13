@@ -1,0 +1,74 @@
+[
+  {
+    "fileName": "13485.pdf",
+    "title": "ISO 13485:2016 Medical Device Quality Management",
+    "issuingBody": "ISO",
+    "year": 2016,
+    "description": "Medical Device Quality Management System certification",
+    "fileType": "pdf",
+    "category": "Quality"
+  },
+  {
+    "fileName": "ISO14001.pdf",
+    "title": "ISO 14001:2015 Environmental Management System",
+    "issuingBody": "ISO",
+    "year": 2015,
+    "description": "Environmental Management System certification",
+    "fileType": "pdf",
+    "category": "Environmental"
+  },
+  {
+    "fileName": "WQA-official-gold-seal-listing (1).pdf",
+    "title": "WQA Official Gold Seal Listing",
+    "issuingBody": "Water Quality Association",
+    "year": 2023,
+    "description": "Official Gold Seal listing for water treatment products",
+    "fileType": "pdf",
+    "category": "Water Quality"
+  },
+  {
+    "fileName": "iso 9001.pdf",
+    "title": "ISO 9001:2015 Quality Management System",
+    "issuingBody": "ISO",
+    "year": 2015,
+    "description": "Quality Management System certification",
+    "fileType": "pdf",
+    "category": "Quality"
+  },
+  {
+    "fileName": "marketing authorization.pdf",
+    "title": "Marketing Authorization",
+    "issuingBody": "Regulatory Authority",
+    "year": 2023,
+    "description": "Medical device marketing authorization",
+    "fileType": "pdf",
+    "category": "Regulatory"
+  },
+  {
+    "fileName": "medical_device linces.pdf",
+    "title": "Medical Device License",
+    "issuingBody": "Health Authority",
+    "year": 2023,
+    "description": "Medical device manufacturing license",
+    "fileType": "pdf",
+    "category": "Regulatory"
+  },
+  {
+    "fileName": "patent certificate.webp",
+    "title": "Patent Certificate",
+    "issuingBody": "Patent Office",
+    "year": 2023,
+    "description": "Patent certification for Enagic technology",
+    "fileType": "image",
+    "category": "Intellectual Property"
+  },
+  {
+    "fileName": "wqa certificate.jfif",
+    "title": "WQA Gold Seal Certificate",
+    "issuingBody": "Water Quality Association",
+    "year": 2023,
+    "description": "Water Quality Association Gold Seal certification",
+    "fileType": "image",
+    "category": "Water Quality"
+  }
+]

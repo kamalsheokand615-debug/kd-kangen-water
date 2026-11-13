@@ -5,14 +5,84 @@ import { fadeInUp } from '../../utils/animations';
 import { useCertificates } from '../../hooks/useApi';
 import { Certificate } from '../../utils/types';
 import { Lightbox } from '../../components/ui/Lightbox';
-import { useState } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+
+interface StaticCertificate {
+  fileName: string;
+  title: string;
+  issuingBody: string;
+  year: number;
+  description: string;
+  fileType: 'image' | 'pdf';
+  category: string;
+}
 
 export function CertificatesPage() {
-  const { certificates, loading } = useCertificates();
+  const { certificates: apiCertificates, loading: apiLoading } = useCertificates();
+  const [staticCertificates, setStaticCertificates] = useState<StaticCertificate[]>([]);
+  const [staticLoading, setStaticLoading] = useState(true);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  const activeCertificates = certificates.filter(c => c.isActive).sort((a, b) => a.displayOrder - b.displayOrder);
+  // Load static certificates from manifest
+  useEffect(() => {
+    const loadStaticCertificates = async () => {
+      try {
+        const response = await fetch('/certificates-manifest.json');
+        if (response.ok) {
+          const data = (await response.json()) as StaticCertificate[];
+          setStaticCertificates(data);
+        }
+      } catch (err) {
+        console.warn('Failed to load static certificates:', err);
+      } finally {
+        setStaticLoading(false);
+      }
+    };
+    void loadStaticCertificates();
+  }, []);
+
+  const loading = apiLoading || staticLoading;
+
+  // Convert static certificates to Certificate format and merge with API certificates
+const allCertificates = useMemo(() => {
+    const staticAsCertificates: Certificate[] = staticCertificates.map((cert, index) => {
+      const encodedFileName = encodeURIComponent(cert.fileName);
+      return {
+        id: -(index + 1),
+        title: cert.title,
+        issuingBody: cert.issuingBody,
+        year: cert.year,
+        description: cert.description,
+        fileUrl: `/image/hero%20section%20/${encodedFileName}`,
+        fileType: cert.fileType,
+        category: cert.category,
+        certificateNumber: null,
+        validDate: null,
+        displayOrder: index,
+        isActive: true,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+    });
+
+    // Merge with API certificates, avoiding duplicates by title
+    const apiCerts = apiCertificates.filter(c => c.isActive);
+    const merged = [...apiCerts];
+    
+    for (const staticCert of staticAsCertificates) {
+      const isDuplicate = apiCerts.some(apiCert => 
+        apiCert.title.toLowerCase().trim() === staticCert.title.toLowerCase().trim()
+      );
+      if (!isDuplicate) {
+        merged.push(staticCert);
+      }
+    }
+
+    return merged.sort((a, b) => a.displayOrder - b.displayOrder);
+  }, [apiCertificates, staticCertificates]);
+
+  const activeCertificates = allCertificates.filter(cert => cert.category !== 'Product');
 
   const lightboxItems = activeCertificates.map(cert => ({
     src: cert.fileUrl || '',
@@ -35,7 +105,7 @@ export function CertificatesPage() {
   }
 
   const groupedCerts = activeCertificates.reduce((acc, cert) => {
-    const category = cert.issuingBody || 'Other';
+    const category = cert.category || cert.issuingBody || 'Other';
     if (!acc[category]) acc[category] = [];
     acc[category].push(cert);
     return acc;
@@ -106,7 +176,7 @@ export function CertificatesPage() {
                   </h3>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {certs.map(cert => (
+                    {certs.map((cert) => (
                       <motion.article
                         key={cert.id}
                         initial={{ opacity: 0, y: 20 }}
@@ -125,19 +195,27 @@ export function CertificatesPage() {
                                 <img
                                   src={cert.fileUrl}
                                   alt={cert.title}
-                                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                                  className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                                   loading="lazy"
                                   decoding="async"
                                 />
                               </button>
                             ) : (
-                              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-water-100 to-aqua-100">
+                              <button
+                                onClick={() => {
+                                  if (cert.fileUrl) {
+                                    window.open(cert.fileUrl, '_blank', 'noopener,noreferrer');
+                                  }
+                                }}
+                                className="w-full h-full flex items-center justify-center bg-gradient-to-br from-water-100 to-aqua-100"
+                                aria-label={`Open ${cert.title} PDF`}
+                              >
                                 <FileText className="w-16 h-16 text-water-400" />
-                              </div>
+                              </button>
                             )}
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                               <span className="text-white text-sm font-medium w-full text-center">
-                                {cert.fileType === 'pdf' ? 'View PDF' : 'View Image'}
+                                {cert.fileType === 'pdf' ? 'Open PDF' : 'View Image'}
                               </span>
                             </div>
                           </div>
@@ -169,14 +247,24 @@ export function CertificatesPage() {
                                 <CheckCircle className="w-3 h-3 text-green-500" />
                                 Verified
                               </span>
-                              <button
-                                onClick={() => { setLightboxIndex(activeCertificates.findIndex(c => c.id === cert.id)); setLightboxOpen(true); }}
-                                className="text-water-600 hover:text-water-700 text-sm font-medium flex items-center gap-1"
-                                aria-label={`View ${cert.title} full size`}
-                              >
-                                View Full
-                                <ExternalLink className="w-4 h-4" />
-                              </button>
+                              {cert.fileUrl && (
+                                <button
+                                  onClick={() => {
+                                    const url = cert.fileUrl!;
+                                    if (cert.fileType === 'pdf') {
+                                      window.open(url, '_blank', 'noopener,noreferrer');
+                                    } else {
+                                      setLightboxIndex(activeCertificates.findIndex(c => c.id === cert.id));
+                                      setLightboxOpen(true);
+                                    }
+                                  }}
+                                  className="text-water-600 hover:text-water-700 text-sm font-medium flex items-center gap-1"
+                                  aria-label={`View ${cert.title} full size`}
+                                >
+                                  {cert.fileType === 'pdf' ? 'Open PDF' : 'View Full'}
+                                  <ExternalLink className="w-4 h-4" />
+                                </button>
+                              )}
                             </div>
                           </div>
                         </div>
