@@ -204,16 +204,28 @@ const allCertificates = useMemo(() => {
                               <button
                                 onClick={() => {
                                   if (cert.fileUrl) {
-                                    window.open(cert.fileUrl, '_blank', 'noopener,noreferrer');
+                                    setLightboxIndex(activeCertificates.findIndex(c => c.id === cert.id));
+                                    setLightboxOpen(true);
                                   }
                                 }}
-                                className="w-full h-full flex items-center justify-center bg-gradient-to-br from-water-100 to-aqua-100"
-                                aria-label={`Open ${cert.title} PDF`}
+                                className="w-full h-full block bg-gray-100"
+                                aria-label={`View ${cert.title} PDF`}
                               >
-                                <FileText className="w-16 h-16 text-water-400" />
+                                {cert.fileUrl ? (
+                                  <iframe
+                                    src={cert.fileUrl}
+                                    title={cert.title}
+                                    className="w-full h-full border-0 pointer-events-none"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <span className="w-full h-full flex items-center justify-center bg-gradient-to-br from-water-100 to-aqua-100">
+                                    <FileText className="w-16 h-16 text-water-400" />
+                                  </span>
+                                )}
                               </button>
                             )}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4 pointer-events-none">
                               <span className="text-white text-sm font-medium w-full text-center">
                                 {cert.fileType === 'pdf' ? 'Open PDF' : 'View Image'}
                               </span>
