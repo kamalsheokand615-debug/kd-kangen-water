@@ -15,6 +15,7 @@ import {
   getAllContactMessages, createContactMessage, markContactMessageRead, deleteContactMessage, getUnreadContactCount,
   getHeroContent, getAllSettings, setSetting,
 } from '../utils/queries.js';
+import { sendContactNotification } from '../utils/email.js';
 
 function parseStringArray(value: unknown): string[] {
   if (Array.isArray(value)) {
@@ -194,9 +195,11 @@ export async function postContactMessage(req: Request, res: Response, next: Next
     const subject = typeof body.subject === 'string' ? body.subject : undefined;
     const message = typeof body.message === 'string' ? body.message : '';
     createContactMessage({ name, email, phone, subject, message });
-    
-    // TODO: Send email notification if SMTP configured
-    
+
+    sendContactNotification({ name, email, phone, subject, message }).catch((err) => {
+      console.error('Failed to send contact notification email:', err);
+    });
+
     res.status(201).json({ message: 'Message sent successfully' });
   } catch (error) {
     next(error);
