@@ -1,4 +1,4 @@
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { dirname, join } from 'path';
 import { existsSync, readFileSync } from 'fs';
 import bcrypt from 'bcryptjs';
@@ -19,7 +19,7 @@ function loadJson(filename: string): unknown {
   return JSON.parse(readFileSync(path, 'utf-8'));
 }
 
-async function seed() {
+export async function seed() {
   console.log('Starting database seed...');
   
   await initializeDatabase();
@@ -267,4 +267,10 @@ async function seed() {
   console.log('Database seed completed!');
 }
 
-seed().catch(console.error);
+const isDirectRun = process.argv[1]
+  ? import.meta.url === pathToFileURL(process.argv[1]).href
+  : false;
+
+if (isDirectRun) {
+  seed().catch(console.error);
+}

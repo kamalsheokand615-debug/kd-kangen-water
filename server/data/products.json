@@ -20,7 +20,10 @@
     "contactForPrice": true,
     "category": "Water Ionizers",
     "images": [
-      "/image/k8.avif"
+      "/image/k8.avif",
+      "/image/hero%20section%20/enagic-kangen-leveluk-sd501-super-water-ionizer-machine.jpg",
+      "/image/hero%20section%20/patent%20certificate.webp",
+      "/image/hero%20section%20/wqa%20certificate.jfif"
     ],
     "inStock": true,
     "displayOrder": 1,
@@ -49,7 +52,10 @@
     "category": "Water Ionizers",
     "images": [
       "/image/levluck dx.png",
-      "/dx model.webp"
+      "/dx model.webp",
+      "/image/hero%20section%20/enagic-kangen-leveluk-sd501-super-water-ionizer-machine.jpg",
+      "/image/hero%20section%20/patent%20certificate.webp",
+      "/image/hero%20section%20/wqa%20certificate.jfif"
     ],
     "inStock": true,
     "displayOrder": 2,
@@ -78,7 +84,10 @@
     "contactForPrice": true,
     "category": "Water Ionizers",
     "images": [
-      "/-Platinum-.jpg"
+      "/-Platinum-.jpg",
+      "/image/hero%20section%20/enagic-kangen-leveluk-sd501-super-water-ionizer-machine.jpg",
+      "/image/hero%20section%20/patent%20certificate.webp",
+      "/image/hero%20section%20/wqa%20certificate.jfif"
     ],
     "inStock": true,
     "displayOrder": 3,
@@ -106,7 +115,10 @@
     "contactForPrice": true,
     "category": "Water Ionizers",
     "images": [
-      "/image/-leveluk-jriv.jpg"
+      "/image/-leveluk-jriv.jpg",
+      "/image/hero%20section%20/enagic-kangen-leveluk-sd501-super-water-ionizer-machine.jpg",
+      "/image/hero%20section%20/patent%20certificate.webp",
+      "/image/hero%20section%20/wqa%20certificate.jfif"
     ],
     "inStock": true,
     "displayOrder": 4,
@@ -134,7 +146,10 @@
     "contactForPrice": true,
     "category": "Shower Systems",
     "images": [
-      "/image/hero section /anespa dx.jpg"
+      "/image/hero%20section%20/anespa%20dx.jpg",
+      "/image/hero%20section%20/enagic-kangen-leveluk-sd501-super-water-ionizer-machine.jpg",
+      "/image/hero%20section%20/patent%20certificate.webp",
+      "/image/hero%20section%20/wqa%20certificate.jfif"
     ],
     "inStock": true,
     "displayOrder": 5,
@@ -162,7 +177,12 @@
     "price": null,
     "contactForPrice": true,
     "category": "Commercial",
-    "images": [],
+    "images": [
+      "/image/hero%20section%20/enagic-kangen-leveluk-sd501-super-water-ionizer-machine.jpg",
+      "/image/hero%20section%20/patent%20certificate.webp",
+      "/image/hero%20section%20/wqa%20certificate.jfif",
+      "/image/hero%20section%20/dx%20model.webp"
+    ],
     "inStock": true,
     "displayOrder": 6,
     "metaTitle": "Super 501 - Commercial Kangen Water Machine | K.D Kangen Water",
