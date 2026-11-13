@@ -213,7 +213,7 @@ const allCertificates = useMemo(() => {
                               >
                                 {cert.fileUrl ? (
                                   <iframe
-                                    src={cert.fileUrl}
+                                    src={`${cert.fileUrl}#toolbar=0&navpanes=0&view=FitH`}
                                     title={cert.title}
                                     className="w-full h-full border-0 pointer-events-none"
                                     loading="lazy"

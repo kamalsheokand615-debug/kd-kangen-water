@@ -185,7 +185,7 @@ export function Lightbox({ isOpen, onClose, items, initialIndex = 0 }: LightboxP
                   exit={{ opacity: 0 }}
                 >
                   <iframe
-                    src={currentItem.src}
+                    src={`${currentItem.src}#toolbar=0&navpanes=0&view=FitH`}
                     className="w-full h-full border-0"
                     title={currentItem.alt}
                   />
