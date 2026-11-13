@@ -10,7 +10,9 @@
     }
   ],
   "routes": [
+    { "src": "/api/(.*)", "dest": "https://kd-kangen-water.onrender.com/api/$1" },
+    { "src": "/uploads/(.*)", "dest": "https://kd-kangen-water.onrender.com/uploads/$1" },
     { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/index.html" }
+    { "src": "/((?!api/|uploads/).*)", "dest": "/index.html" }
   ]
 }

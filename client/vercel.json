@@ -1,5 +1,7 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/api/:path*", "destination": "https://kd-kangen-water.onrender.com/api/:path*" },
+    { "source": "/uploads/:path*", "destination": "https://kd-kangen-water.onrender.com/uploads/:path*" },
+    { "source": "/((?!api/|uploads/).*)", "destination": "/index.html" }
   ]
 }
