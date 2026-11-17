@@ -204,7 +204,7 @@ export function AdminCertificatesPage() {
                   </td>
                   <td className="px-6 py-4">
                     {item.fileUrl && item.fileType === 'image' ? (
-                      <img src={item.fileUrl} alt={item.title} className="w-16 h-12 rounded-lg object-cover border border-gray-200" loading="lazy" />
+                      <img src={item.fileUrl} alt={item.title} className="w-16 h-12 rounded-lg object-cover border border-gray-200" loading="lazy" width="64" height="48" />
                     ) : (
                       <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center">
                         {item.fileType === 'pdf' ? <FileText className="w-6 h-6 text-gray-400" /> : <ImageIcon className="w-6 h-6 text-gray-400" />}

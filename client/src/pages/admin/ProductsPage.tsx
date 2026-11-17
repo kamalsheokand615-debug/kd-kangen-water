@@ -230,7 +230,7 @@ export function AdminProductsPage() {
                           onClick={() => setViewingImages(product.images)}
                           className="w-16 h-12 rounded-lg overflow-hidden border border-gray-200 hover:shadow-md transition-shadow"
                         >
-                          <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" loading="lazy" />
+                          <img src={product.images[0]} alt={product.name} className="w-full h-full object-cover" loading="lazy" width="400" height="300" />
                         </button>
                       ) : (
                         <div className="w-16 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-gray-400">
@@ -393,7 +393,7 @@ export function AdminProductsPage() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {viewingImages.map((img, i) => (
             <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-gray-200">
-              <img src={img} alt={`Image ${i + 1}`} className="w-full h-full object-cover" />
+              <img src={img} alt={`Image ${i + 1}`} className="w-full h-full object-cover" loading="lazy" width="400" height="300" />
               <button
                 onClick={() => setViewingImages(viewingImages)}
                 className="absolute top-2 right-2 p-1 rounded-full bg-white/90 text-gray-600 hover:text-red-600"

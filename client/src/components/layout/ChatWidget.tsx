@@ -55,6 +55,9 @@ export function ChatWidget() {
                   src="/image/hero%20section%20/wqa%20certificate.jfif"
                   alt="WQA Certificate"
                   className="w-6 h-6 rounded object-cover border border-white/30"
+                  loading="lazy"
+                  width="48"
+                  height="48"
                 />
                 <MessageCircle className="w-5 h-5" />
                 <div>

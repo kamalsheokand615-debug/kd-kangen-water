@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Navbar } from './Navbar';
@@ -7,17 +7,28 @@ import { ScrollToTop } from './ScrollToTop';
 import { useAuth } from '../../context/AuthContext';
 import { cn } from '../../utils/helpers';
 import { ChatWidget } from './ChatWidget';
+import { RouteSkeleton } from '../ui/RouteSkeleton';
 
 export function PublicLayout() {
+  const [chatMounted, setChatMounted] = useState(false);
+
+  // Defer chat widget mount until after initial paint to reduce CLS and critical path impact
+  useEffect(() => {
+    const timer = setTimeout(() => setChatMounted(true), 150);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
       <ScrollToTop />
       <Navbar />
       <main className="flex-1" id="main-content" role="main">
-        <Outlet />
+        <Suspense fallback={<RouteSkeleton />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
-      <ChatWidget />
+      {chatMounted && <ChatWidget />}
     </div>
   );
 }
@@ -74,7 +85,9 @@ export function AdminLayout() {
           <h1 className="text-xl font-semibold text-gray-900">Admin Dashboard</h1>
         </header>
         <main className="flex-1 overflow-y-auto p-4 sm:p-6" role="main">
-          <Outlet />
+          <Suspense fallback={<RouteSkeleton />}>
+            <Outlet />
+          </Suspense>
         </main>
       </div>
     </div>

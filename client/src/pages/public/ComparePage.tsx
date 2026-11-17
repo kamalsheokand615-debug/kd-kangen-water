@@ -112,6 +112,8 @@ export function ComparePage() {
                           alt={product.name}
                           className="w-full h-full object-contain"
                           loading="lazy"
+                          width="400"
+                          height="300"
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center text-gray-300 text-sm">

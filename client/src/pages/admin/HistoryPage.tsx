@@ -202,7 +202,7 @@ export function AdminHistoryPage() {
                   </td>
                   <td className="px-6 py-4">
                     {item.imageUrl ? (
-                      <img src={item.imageUrl} alt={item.title} className="w-16 h-10 rounded-lg object-cover border border-gray-200" loading="lazy" />
+                      <img src={item.imageUrl} alt={item.title} className="w-16 h-10 rounded-lg object-cover border border-gray-200" loading="lazy" width="64" height="40" />
                     ) : (
                       <span className="text-gray-400">No image</span>
                     )}

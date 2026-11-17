@@ -119,6 +119,8 @@ export function HistoryPage() {
                           alt={`${entry.year}: ${entry.title}`}
                           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                           loading="lazy"
+                          width="800"
+                          height="600"
                         />
                       </motion.div>
                     </div>

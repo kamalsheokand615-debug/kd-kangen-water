@@ -86,8 +86,11 @@ export function ProductDetailPage() {
                       alt={product.name}
                       className="w-full h-full object-contain"
                       id="main-image"
-                      loading="lazy"
+                      loading="eager"
+                      fetchPriority="high"
                       decoding="async"
+                      width="800"
+                      height="800"
                     />
                   </button>
                 ) : (
@@ -112,7 +115,7 @@ export function ProductDetailPage() {
                       aria-label={`View image ${index + 1}`}
                       role="listitem"
                     >
-                      <img src={img} alt={`${product.name} - View ${index + 1}`} className="w-full h-full object-contain" loading="lazy" />
+                      <img src={img} alt={`${product.name} - View ${index + 1}`} className="w-full h-full object-contain" loading="lazy" width="200" height="200" />
                     </button>
                   ))}
                 </div>

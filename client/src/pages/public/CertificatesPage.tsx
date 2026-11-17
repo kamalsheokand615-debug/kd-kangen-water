@@ -198,6 +198,8 @@ const allCertificates = useMemo(() => {
                                   className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                                   loading="lazy"
                                   decoding="async"
+                                  width="800"
+                                  height="600"
                                 />
                               </button>
                             ) : (

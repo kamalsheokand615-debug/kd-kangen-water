@@ -51,5 +51,5 @@ export function CardFooter({ children, className }: { children: ReactNode; class
 }
 
 export function CardImage({ src, alt, className }: { src: string; alt: string; className?: string }) {
-  return <img src={src} alt={alt} className={cn('w-full h-auto object-cover', className)} loading="lazy" />;
+  return <img src={src} alt={alt} className={cn('w-full h-auto object-cover aspect-[4/3]', className)} loading="lazy" width="400" height="300" />;
 }

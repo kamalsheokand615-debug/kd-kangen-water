@@ -46,6 +46,10 @@ export function HomePage() {
             src={hero.backgroundImageUrl}
             alt=""
             aria-hidden="true"
+            loading="eager"
+            fetchPriority="high"
+            width="1920"
+            height="1080"
           />
         ) : null}
         {(hero?.backgroundVideoUrl || hero?.backgroundImageUrl) && (

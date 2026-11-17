@@ -175,8 +175,8 @@ export function AdminSettingsPage() {
           {settingGroups.map(group => (
             <motion.div
               key={group.key}
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: activeTab === group.key ? 1 : 0, height: activeTab === group.key ? 'auto' : 0 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: activeTab === group.key ? 1 : 0 }}
               transition={{ duration: 0.2 }}
               className={activeTab !== group.key ? 'hidden' : ''}
             >
@@ -225,8 +225,8 @@ export function AdminSettingsPage() {
           ))}
 
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: heroExpanded ? 1 : 0, height: heroExpanded ? 'auto' : 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: heroExpanded ? 1 : 0 }}
             transition={{ duration: 0.2 }}
             className={heroExpanded ? '' : 'hidden'}
           >
@@ -256,7 +256,7 @@ export function AdminSettingsPage() {
                 
                 {heroImagePreview && (
                   <div className="mt-4 relative max-w-md">
-                    <img src={heroImagePreview} alt="Hero background preview" className="w-full h-auto rounded-lg border border-gray-200" />
+                    <img src={heroImagePreview} alt="Hero background preview" className="w-full h-auto rounded-lg border border-gray-200" loading="lazy" />
                   </div>
                 )}
               </div>
