@@ -205,6 +205,12 @@ sqlDb.exec(`
     { key: 'seo_description', value: 'Official authorized distributor of Enagic Kangen Water machines in India. Discover the 7 types of water, certified products, and health benefits.', type: 'text', desc: 'Default SEO description' },
     { key: 'og_image', value: '', type: 'image', desc: 'Default Open Graph image' },
     { key: 'disclaimer_text', value: 'This is an independent website of an authorized distributor/representative (K.D). Enagic trademarks belong to Enagic Co., Ltd. The information provided is as stated by the manufacturer and is not medical advice.', type: 'text', desc: 'Footer disclaimer' },
+    { key: 'smtp_host', value: '', type: 'text', desc: 'SMTP host for contact form notifications' },
+    { key: 'smtp_port', value: '587', type: 'text', desc: 'SMTP port' },
+    { key: 'smtp_user', value: '', type: 'text', desc: 'SMTP username' },
+    { key: 'smtp_pass', value: '', type: 'password', desc: 'SMTP password' },
+    { key: 'smtp_from', value: 'noreply@kdkangenwater.com', type: 'text', desc: 'Sender email address' },
+    { key: 'contact_email', value: 'info@kdkangenwater.com', type: 'text', desc: 'Contact form notification recipient' },
   ];
 
   const insertSetting = sqlDb.prepare(`

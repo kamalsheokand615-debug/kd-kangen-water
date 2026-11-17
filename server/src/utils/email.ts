@@ -1,32 +1,82 @@
 import nodemailer from 'nodemailer';
 import { config } from '../config/index.js';
+import { getSetting } from '../utils/queries.js';
 
 let transporter: nodemailer.Transporter | null = null;
 
-function createTransporter() {
-  if (config.email.host && config.email.user && config.email.pass) {
-    return nodemailer.createTransport({
-      host: config.email.host,
-      port: config.email.port,
-      secure: config.email.port === 465,
-      auth: {
-        user: config.email.user,
-        pass: config.email.pass,
-      },
-    });
+interface EmailConfig {
+  host: string;
+  port: number;
+  user: string;
+  pass: string;
+  from: string;
+  contactEmail: string;
+}
+
+function createTransporter(opts: EmailConfig) {
+  return nodemailer.createTransport({
+    host: opts.host,
+    port: opts.port,
+    secure: opts.port === 465,
+    auth: {
+      user: opts.user,
+      pass: opts.pass,
+    },
+  });
+}
+
+function envEmailConfig(): EmailConfig | null {
+  if (!config.email.host || !config.email.user || !config.email.pass) {
+    return null;
   }
-  return null;
+  return {
+    host: config.email.host,
+    port: config.email.port,
+    user: config.email.user,
+    pass: config.email.pass,
+    from: config.email.from,
+    contactEmail: config.email.contactEmail,
+  };
+}
+
+function dbEmailConfig(): EmailConfig | null {
+  const host = getSetting('smtp_host');
+  const user = getSetting('smtp_user');
+  const pass = getSetting('smtp_pass');
+  if (!host || !user || !pass) {
+    return null;
+  }
+  const portRaw = getSetting('smtp_port');
+  return {
+    host,
+    port: portRaw ? parseInt(portRaw, 10) : 587,
+    user,
+    pass,
+    from: getSetting('smtp_from') || config.email.from || 'noreply@example.com',
+    contactEmail: getSetting('contact_email') || config.email.contactEmail || 'info@example.com',
+  };
+}
+
+function resolveEmailConfig(): EmailConfig | null {
+  return envEmailConfig() ?? dbEmailConfig();
 }
 
 export function isEmailConfigured(): boolean {
-  return Boolean(config.email.host && config.email.user && config.email.pass);
+  return Boolean(resolveEmailConfig());
 }
 
 export function getTransporter(): nodemailer.Transporter | null {
-  if (!transporter) {
-    transporter = createTransporter();
+  const cfg = resolveEmailConfig();
+  if (!cfg) {
+    return null;
   }
-  return transporter;
+  if (config.email.host && config.email.user && config.email.pass) {
+    if (!transporter) {
+      transporter = createTransporter(cfg);
+    }
+    return transporter;
+  }
+  return createTransporter(cfg);
 }
 
 export async function sendContactNotification(data: {
@@ -36,13 +86,14 @@ export async function sendContactNotification(data: {
   subject?: string;
   message: string;
 }): Promise<void> {
-  const transport = getTransporter();
-  if (!transport) {
+  const cfg = resolveEmailConfig();
+  if (!cfg) {
     console.log('SMTP not configured; skipping contact notification email.');
     return;
   }
 
-  const to = config.email.contactEmail;
+  const transport = createTransporter(cfg);
+  const to = cfg.contactEmail;
   const subject = `New Contact Form Message: ${data.subject || 'No Subject'}`;
   const html = `
     <h2>New Contact Form Submission</h2>
@@ -55,7 +106,7 @@ export async function sendContactNotification(data: {
   `;
 
   await transport.sendMail({
-    from: config.email.from,
+    from: cfg.from,
     to,
     subject,
     html,

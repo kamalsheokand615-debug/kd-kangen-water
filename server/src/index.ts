@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import { config } from './config/index.js';
@@ -34,13 +35,16 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
+// Compress all responses (text/html, css, js, json) to reduce document request latency
+app.use(compression());
+
 // Static file serving for uploads
 const uploadsPath = config.upload.dir;
-app.use('/uploads', express.static(uploadsPath));
+app.use('/uploads', express.static(uploadsPath, { maxAge: '30d' }));
 
 // Serve static files from client/dist
 const clientDistPath = join(__dirname, '..', '..', 'client', 'dist');
-app.use(express.static(clientDistPath));
+app.use(express.static(clientDistPath, { maxAge: '30d' }));
 
 // Health check
 app.get('/api/health', (req, res) => {

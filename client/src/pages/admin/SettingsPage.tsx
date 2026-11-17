@@ -31,6 +31,7 @@ const settingGroups = [
   { key: 'social', label: 'Social Links', icon: '🔗', fields: ['facebook_url', 'instagram_url', 'youtube_url', 'linkedin_url'] },
   { key: 'seo', label: 'SEO & Meta', icon: '🔍', fields: ['seo_title', 'seo_description', 'og_image'] },
   { key: 'footer', label: 'Footer', icon: '📄', fields: ['footer_text', 'disclaimer_text'] },
+  { key: 'email', label: 'Email (SMTP)', icon: '✉️', fields: ['smtp_host', 'smtp_port', 'smtp_user', 'smtp_pass', 'smtp_from', 'contact_email'] },
 ];
 
 export function AdminSettingsPage() {
@@ -180,28 +181,39 @@ export function AdminSettingsPage() {
               className={activeTab !== group.key ? 'hidden' : ''}
             >
               <form onSubmit={handleSubmitSettings(handleSaveSettings)} className="space-y-6">
-                {group.fields.map(field => (
-                  <div key={field}>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      {field.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
-                    </label>
-                    {field === 'seo_description' || field === 'footer_text' || field === 'disclaimer_text' ? (
-                      <Textarea
-                        {...registerSettings(field)}
-                        rows={3}
-                        placeholder={`Enter ${field.replace(/_/g, ' ')}`}
-                      />
-                    ) : (
-                      <Input
-                        {...registerSettings(field)}
-                        placeholder={`Enter ${field.replace(/_/g, ' ')}`}
-                      />
-                    )}
-                    {settingsErrors[field] && (
-                      <p className="mt-1 text-sm text-red-600">{settingsErrors[field].message}</p>
-                    )}
-                  </div>
-                ))}
+                {group.fields.map(field => {
+                  const inputType = field === 'smtp_pass' ? 'password' : field === 'smtp_port' ? 'number' : 'text';
+                  return (
+                    <div key={field}>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        {field.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}
+                      </label>
+                      {field === 'seo_description' || field === 'footer_text' || field === 'disclaimer_text' ? (
+                        <Textarea
+                          {...registerSettings(field)}
+                          rows={3}
+                          placeholder={`Enter ${field.replace(/_/g, ' ')}`}
+                        />
+                      ) : (
+                        <Input
+                          {...registerSettings(field)}
+                          type={inputType}
+                          placeholder={`Enter ${field.replace(/_/g, ' ')}`}
+                          helperText={
+                            field === 'smtp_pass'
+                              ? 'Leave blank to keep current password'
+                              : field === 'contact_email'
+                              ? 'Where contact form notifications are sent'
+                              : undefined
+                          }
+                        />
+                      )}
+                      {settingsErrors[field] && (
+                        <p className="mt-1 text-sm text-red-600">{settingsErrors[field].message}</p>
+                      )}
+                    </div>
+                  );
+                })}
                 <div className="pt-4 border-t border-gray-200">
                   <Button type="submit" loading={saving}>
                     <Save className="w-5 h-5 mr-2" />
