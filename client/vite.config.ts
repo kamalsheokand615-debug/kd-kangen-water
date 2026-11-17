@@ -34,10 +34,15 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     minify: 'esbuild',
+    target: 'es2020',
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-router-dom', 'framer-motion', 'lucide-react', 'axios'],
+          react: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          motion: ['framer-motion'],
+          icons: ['lucide-react'],
+          http: ['axios'],
         },
       },
     },

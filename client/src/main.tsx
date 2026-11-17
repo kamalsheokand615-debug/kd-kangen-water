@@ -6,6 +6,9 @@ import App from './App';
 import { AuthProvider } from './context/AuthContext';
 import { SettingsProvider } from './context/SettingsContext';
 import './index.css';
+// Self-hosted fonts (CLS fix: removes external Google Fonts request and font-swap shift)
+import '@fontsource/inter';
+import '@fontsource/playfair-display';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -7,7 +7,6 @@ import { ScrollToTop } from './ScrollToTop';
 import { useAuth } from '../../context/AuthContext';
 import { cn } from '../../utils/helpers';
 import { ChatWidget } from './ChatWidget';
-import { RouteSkeleton } from '../ui/RouteSkeleton';
 
 export function PublicLayout() {
   const [chatMounted, setChatMounted] = useState(false);
@@ -22,12 +21,18 @@ export function PublicLayout() {
     <div className="flex flex-col min-h-screen bg-white overflow-x-hidden">
       <ScrollToTop />
       <Navbar />
-      <main className="flex-1" id="main-content" role="main">
-        <Suspense fallback={<RouteSkeleton />}>
-          <Outlet />
+      <main className="flex-1 flex flex-col min-h-[70vh]" id="main-content" role="main">
+        {/* CLS FIX: Footer is inside the Suspense boundary so it can NEVER render before the
+            lazy route content. The fallback reserves full height (min-h-[70vh]) so the footer
+            position is stable from first paint. This prevents the footer from jumping down
+            when the route content or fonts/images load. */}
+        <Suspense fallback={<div className="flex-1 min-h-[70vh]" />}>
+          <div className="flex-1">
+            <Outlet />
+          </div>
+          <Footer />
         </Suspense>
       </main>
-      <Footer />
       {chatMounted && <ChatWidget />}
     </div>
   );
@@ -85,7 +90,7 @@ export function AdminLayout() {
           <h1 className="text-xl font-semibold text-gray-900">Admin Dashboard</h1>
         </header>
         <main className="flex-1 overflow-y-auto p-4 sm:p-6" role="main">
-          <Suspense fallback={<RouteSkeleton />}>
+          <Suspense fallback={<div className="flex-1 min-h-[70vh]" />}>
             <Outlet />
           </Suspense>
         </main>

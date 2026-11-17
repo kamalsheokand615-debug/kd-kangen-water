@@ -34,7 +34,7 @@ export default {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Arial', 'sans-serif'],
         display: ['Playfair Display', 'Georgia', 'serif'],
       },
       animation: {
