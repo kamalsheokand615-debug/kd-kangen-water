@@ -2,6 +2,7 @@ import { lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PublicLayout, AdminLayout } from './components/layout/Layout';
 import { ProtectedRoute, PublicOnlyRoute } from './components/layout/ProtectedRoute';
+import PageMeta from './components/SEO/PageMeta';
 
 const HomePage = lazy(() => import('./pages/public/HomePage').then(mod => ({ default: mod.HomePage })));
 const AboutPage = lazy(() => import('./pages/public/AboutPage').then(mod => ({ default: mod.AboutPage })));
@@ -26,7 +27,9 @@ const AdminSettingsPage = lazy(() => import('./pages/admin/SettingsPage').then(m
 
 function App() {
   return (
-    <Routes>
+    <>
+      <PageMeta />
+      <Routes>
       <Route element={<PublicLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/about" element={<AboutPage />} />
@@ -55,7 +58,8 @@ function App() {
           <Route path="/admin/settings" element={<AdminSettingsPage />} />
         </Route>
       </Route>
-    </Routes>
+      </Routes>
+    </>
   );
 }
 
