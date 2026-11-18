@@ -4,6 +4,7 @@ import { Building2, MapPin, Factory, Globe, Users, Award, Leaf, Zap, Shield, Boo
 import { fadeInUp, staggerItem } from '../../utils/animations';
 import { useCompanyContent } from '../../hooks/useApi';
 import { cn } from '../../utils/helpers';
+import { normalizeHeadingLevels } from '../../utils/html';
 
 const sections = [
   { key: 'overview', icon: Building2, title: 'Company Overview' },
@@ -143,7 +144,7 @@ export function AboutPage() {
                       <h2 className="font-display font-bold text-2xl sm:text-3xl text-gray-900 mb-4">
                         {sectionData.title || section.title}
                       </h2>
-                      <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: sectionData.content }} />
+                      <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed" dangerouslySetInnerHTML={{ __html: normalizeHeadingLevels(sectionData.content) }} />
                     </div>
                   </div>
                 </motion.article>

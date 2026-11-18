@@ -8,6 +8,7 @@ import { formatPrice } from '../../utils/helpers';
 import { Button } from '../../components/ui/Button';
 import { Lightbox } from '../../components/ui/Lightbox';
 import { cn } from '../../utils/helpers';
+import { normalizeHeadingLevels } from '../../utils/html';
 
 export function ProductDetailPage() {
   const { slug } = useParams<{ slug: string }>();
@@ -139,7 +140,7 @@ export function ProductDetailPage() {
                 </div>
 
                 {product.description && (
-                  <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: product.description }} />
+                  <div className="prose prose-gray max-w-none text-gray-600 leading-relaxed mb-8" dangerouslySetInnerHTML={{ __html: normalizeHeadingLevels(product.description) }} />
                 )}
 
                 <div className="space-y-4 mb-8">

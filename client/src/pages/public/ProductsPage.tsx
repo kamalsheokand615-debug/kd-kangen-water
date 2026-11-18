@@ -125,6 +125,7 @@ export function ProductsPage() {
                 onChange={e => { setSelectedCategory(e.target.value); setPage(1); }}
                 options={[{ value: '', label: 'All Categories' }, ...categories.map(c => ({ value: c, label: c }))]}
                 placeholder="Filter by category"
+                aria-label="Filter by category"
                 className="w-48"
               />
 
@@ -138,6 +139,7 @@ export function ProductsPage() {
                 }}
                 options={sortOptions}
                 placeholder="Sort by"
+                aria-label="Sort by"
                 className="w-48"
               />
 

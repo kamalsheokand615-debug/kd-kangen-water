@@ -7,6 +7,7 @@ import { useFaqs } from '../../hooks/useApi';
 import { useSettings } from '../../context/SettingsContext';
 import { FAQ } from '../../utils/types';
 import { cn } from '../../utils/helpers';
+import { normalizeHeadingLevels } from '../../utils/html';
 
 export function FAQPage() {
   const { faqs, loading } = useFaqs();
@@ -210,7 +211,7 @@ function FAQItem({ faq, index, isExpanded, onToggle }: { faq: FAQ; index: number
             role="region"
             aria-label={`Answer to: ${faq.question}`}
           >
-            <div className="prose prose-gray max-w-none text-gray-700 leading-relaxed pt-4 border-t border-gray-100" dangerouslySetInnerHTML={{ __html: faq.answer }} />
+            <div className="prose prose-gray max-w-none text-gray-700 leading-relaxed pt-4 border-t border-gray-100" dangerouslySetInnerHTML={{ __html: normalizeHeadingLevels(faq.answer) }} />
           </motion.div>
         )}
       </AnimatePresence>
