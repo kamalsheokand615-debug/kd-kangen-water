@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { validate } from '../middleware/validation.js';
-import { authMiddleware } from '../middleware/auth.js';
+import { authMiddleware, optionalAuth } from '../middleware/auth.js';
 import { uploadSingle } from '../middleware/upload.js';
 import { loginLimiter, apiLimiter } from '../middleware/rateLimiter.js';
 import * as ctrl from '../controllers/index.js';
@@ -30,7 +30,7 @@ router.use('/contact', contactRoutes);
 // Auth Routes
 router.post('/auth/login', loginLimiter, validate(loginSchema), ctrl.login);
 router.post('/auth/logout', ctrl.logout);
-router.get('/auth/me', authMiddleware, ctrl.getMe);
+router.get('/auth/me', optionalAuth, ctrl.getMe);
 router.post('/auth/change-password', authMiddleware, validate(changePasswordSchema), ctrl.changePassword);
 
 // Admin Routes (all protected)

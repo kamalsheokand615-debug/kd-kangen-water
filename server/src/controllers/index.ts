@@ -247,8 +247,8 @@ export async function logout(req: Request, res: Response) {
 }
 
 export async function getMe(req: AuthRequest, res: Response) {
-  if (!req.user) return res.status(401).json({ error: 'Not authenticated' });
-  res.json({ user: req.user });
+  // Public session check: unauthenticated visitors get 200 with null user (avoids 401 console errors)
+  res.json({ user: req.user ?? null });
 }
 
 export async function changePassword(req: AuthRequest, res: Response, next: NextFunction) {
