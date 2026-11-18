@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CLS FIX: Self-hosted variable fonts (one file per family, all weights) with
+   font-display: optional, preloaded in index.html so they are available at first
+   paint and never cause a font-swap layout shift. */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: optional;
+  src: url('/fonts/inter-latin-variable.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: optional;
+  src: url('/fonts/playfair-latin-variable.woff2') format('woff2');
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
