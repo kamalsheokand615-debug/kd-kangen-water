@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0369a1" />
-    <title>K.D Kangen Water | Water Ionizer | Authorized Enagic Kangen Water&reg; Distributor</title>
+    <title>K.D Kangen Water | Water Ionizer in Jind, Haryana | Authorized Enagic Kangen Water&reg; Distributor</title>
     <meta
       name="description"
       content="K.D Kangen Water is an authorized independent Enagic distributor offering Kangen Water&reg; ionizers, Leveluk&reg; machines, product certifications, and warranty support."
@@ -13,11 +13,17 @@
     <!-- CLS FIX: Preload self-hosted variable fonts so they're available at first paint, preventing font-swap shift -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/inter-latin-variable.woff2" crossorigin />
     <link rel="preload" as="font" type="font/woff2" href="/fonts/playfair-latin-variable.woff2" crossorigin />
+    <!-- Preconnect to external origins used by contact/map/WhatsApp links -->
+    <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+    <link rel="dns-prefetch" href="https://www.google.com" />
+    <link rel="dns-prefetch" href="https://wa.me" />
+    <!-- Prioritize the main application script on the critical path -->
+    <script type="module" src="/src/main.tsx" fetchpriority="high" defer></script>
     <!-- SEO: canonical + social defaults (updated per-route at runtime by PageMeta) -->
     <link rel="canonical" href="https://kd-kangen-water.vercel.app/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://kd-kangen-water.vercel.app/" />
-    <meta property="og:title" content="K.D Kangen Water | Water Ionizer | Authorized Enagic Kangen Water&reg; Distributor" />
+    <meta property="og:title" content="K.D Kangen Water | Water Ionizer in Jind, Haryana | Authorized Enagic Kangen Water&reg; Distributor" />
     <meta
       property="og:description"
       content="K.D Kangen Water is an authorized independent Enagic distributor offering Kangen Water&reg; ionizers, Leveluk&reg; machines, product certifications, and warranty support."
@@ -25,6 +31,5 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

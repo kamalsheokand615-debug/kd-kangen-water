@@ -8,9 +8,9 @@ type PageMeta = {
 };
 
 const DEFAULT_META: PageMeta = {
-  title: 'K.D Kangen Water | Water Ionizer | Authorized Enagic Kangen Water® Distributor',
+  title: 'K.D Kangen Water | Water Ionizer in Jind, Haryana | Authorized Enagic Distributor',
   description:
-    'K.D Kangen Water is an authorized independent Enagic distributor offering Kangen Water® ionizers, Leveluk® machines, product certifications, and warranty support.',
+    'K.D Kangen Water is an authorized independent Enagic distributor in Jind, Haryana offering Kangen Water® ionizers, Leveluk® machines, product certifications, and warranty support.',
 };
 
 const PAGE_META: Record<string, PageMeta> = {
