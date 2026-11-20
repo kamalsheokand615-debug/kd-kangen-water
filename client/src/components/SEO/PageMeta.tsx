@@ -8,7 +8,7 @@ type PageMeta = {
 };
 
 const DEFAULT_META: PageMeta = {
-  title: 'K.D Kangen Water | Authorized Enagic Kangen Water® Distributor',
+  title: 'K.D Kangen Water | Water Ionizer | Authorized Enagic Kangen Water® Distributor',
   description:
     'K.D Kangen Water is an authorized independent Enagic distributor offering Kangen Water® ionizers, Leveluk® machines, product certifications, and warranty support.',
 };
